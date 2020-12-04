@@ -14,11 +14,13 @@ import io
 import tests.blarg
 from emulators.bgb import BGB
 from emulators.vba import VBA
+from emulators.sameboy import SameBoy
 
 
 emulators = [
     BGB(),
     VBA(),
+    SameBoy(),
 ]
 tests = tests.blarg.all
 
