@@ -16,8 +16,7 @@ def download(url, filename):
         open(filename, "wb").write(r.content)
 
 def extract(filename, path):
-    if not os.path.exists(path):
-        zipfile.ZipFile(filename).extractall(path)
+    zipfile.ZipFile(filename).extractall(path)
 
 def findWindow(title_check):
     def f(hwnd, results):
