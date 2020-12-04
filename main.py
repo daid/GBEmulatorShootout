@@ -25,8 +25,9 @@ emulators = [
 tests = tests.blarg.all
 
 
-if False:
+if __name__ == "__main__":
     for emulator in emulators:
+        emulator.setup()
         print("Startup time: %s = %g" % (emulator, emulator.measureStartupTime(test)))
 
 if False:
