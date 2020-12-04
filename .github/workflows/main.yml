@@ -41,7 +41,7 @@ jobs:
       - name: Archive result
         uses: actions/upload-artifact@v2
         with:
-          name: test
+          name: results
           path: results.html
       - name: Deploy pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
