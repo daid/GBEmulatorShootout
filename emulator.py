@@ -23,6 +23,11 @@ class Emulator:
 
     def run(self, test):
         print("Running %s on %s" % (test, self))
+        
+        sav_file = os.path.splitext(test.rom)[0] + ".sav"
+        if os.path.exists(sav_file):
+            os.unlink(sav_file)
+        
         p = self.startProcess(test.rom)
         time.sleep(self.startup_time)
         self.postStartup()
