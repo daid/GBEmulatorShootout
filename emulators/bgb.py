@@ -13,4 +13,4 @@ class BGB(Emulator):
         setDPIScaling("emu/bgb/bgb.exe")
     
     def startProcess(self, rom):
-        return subprocess.Popen(["emu/bgb/bgb.exe", "-set", "Speed=10", "-set", "LoadRomWarnings=0", "-set", "Width=160", "-set", "Height=144", os.path.abspath(rom)], cwd="emu/bgb")
+        return subprocess.Popen(["emu/bgb/bgb.exe", "-set", "Speed=10", "-set", "LoadRomWarnings=0", "-set", "Width=160", "-set", "Height=144", "-set", "SoundOut=null", os.path.abspath(rom)], cwd="emu/bgb")
