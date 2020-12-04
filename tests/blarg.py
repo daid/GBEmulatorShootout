@@ -16,7 +16,7 @@ all = [
 
     Test("blarg/halt_bug.gb", runtime=2.0),
     Test("blarg/instr_timing.gb", runtime=1.0),
-    Test("blarg/interrupt_time.gb", runtime=1.0),
+    Test("blarg/interrupt_time.gb", runtime=1.0, gbc=True),
 
     Test("blarg/mem_timing/01-read_timing.gb", runtime=1.0),
     Test("blarg/mem_timing/02-write_timing.gb", runtime=1.0),
