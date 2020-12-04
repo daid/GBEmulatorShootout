@@ -46,5 +46,3 @@ jobs:
           git clone --single-branch --branch gh-pages git@github.com:daid/GBEmulatorShootout.git pages
           cp results.html pages/index.html
           cd pages && git commit -a -m 'Update' && git push
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
