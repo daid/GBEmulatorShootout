@@ -16,12 +16,14 @@ import tests.blarg
 from emulators.bgb import BGB
 from emulators.vba import VBA
 from emulators.sameboy import SameBoy
+from emulators.nocash import NoCash
 
 
 emulators = [
+    SameBoy(),
     BGB(),
     VBA(),
-    SameBoy(),
+    NoCash(),
 ]
 tests = tests.blarg.all
 

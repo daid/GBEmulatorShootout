@@ -32,6 +32,13 @@ def findWindow(title_check):
 
 def getScreenshot(title_check):
     hwnd = findWindow(title_check)
+    if not hwnd:
+        print("Window not found....")
+        def f(hwnd, _):
+            title = win32gui.GetWindowText(hwnd)
+            if title:
+                print(hwnd, title)
+        win32gui.EnumWindows(f, None)
     rect = win32gui.GetClientRect(hwnd)
     position = win32gui.ClientToScreen(hwnd, (rect[0], rect[1]))
     return pyautogui.screenshot(region=(position[0], position[1], rect[2], rect[3]))

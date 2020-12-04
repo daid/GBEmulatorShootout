@@ -20,6 +20,9 @@ class Emulator:
 
     def postStartup(self):
         pass
+    
+    def getScreenshot(self):
+        return getScreenshot(self.title_check)
 
     def run(self, test):
         print("Running %s on %s" % (test, self))
@@ -34,7 +37,7 @@ class Emulator:
         start_time = time.time()
         while time.time() - start_time < test.runtime / self.speed:
             time.sleep(0.1)
-            screenshot = getScreenshot(self.title_check)
+            screenshot = self.getScreenshot()
             if test.checkResult(screenshot) == True:
                 print("Early exit: %g" % (time.time() - start_time))
                 break
@@ -49,7 +52,7 @@ class Emulator:
         prev = None
         while True:
             time.sleep(0.1)
-            screenshot = getScreenshot(self.title_check)
+            screenshot = self.getScreenshot()
             if prev is not None and not compareImage(screenshot, prev):
                 last_change = time.time()
             prev = screenshot
@@ -69,7 +72,7 @@ class Emulator:
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
         while True:
-            screenshot = getScreenshot(self.title_check)
+            screenshot = self.getScreenshot()
             if screenshot.size[0] != 160 or screenshot.size[1] != 144:
                 continue
             colors = screenshot.getcolors()
