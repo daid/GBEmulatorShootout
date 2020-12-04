@@ -1,5 +1,6 @@
 import time
 import os
+import PIL.Image
 
 from util import *
 
@@ -17,15 +18,23 @@ class Emulator:
     def startProcess(self, rom):
         raise NotImplementedError()
 
+    def postStartup(self):
+        pass
+
     def run(self, test):
         print("Running %s on %s" % (test, self))
         p = self.startProcess(test.rom)
-        time.sleep(self.startup_time + test.runtime / self.speed)
-        screenshot = getScreenshot(self.title_check)
+        time.sleep(self.startup_time)
+        self.postStartup()
+        start_time = time.time()
+        while time.time() - start_time < test.runtime / self.speed:
+            time.sleep(0.1)
+            screenshot = getScreenshot(self.title_check)
+            if test.checkResult(screenshot) == True:
+                print("Early exit: %g" % (time.time() - start_time))
+                break
         p.terminate()
-        if not test.checkResult(screenshot):
-            return False, screenshot
-        return True, screenshot
+        return test.checkResult(screenshot), screenshot
     
     def getRunTimeFor(self, test):
         p = self.startProcess(test.rom)
@@ -39,13 +48,33 @@ class Emulator:
             if prev is not None and not compareImage(screenshot, prev):
                 last_change = time.time()
             prev = screenshot
-            if time.time() - last_change > 3.0:
+            if time.time() - last_change > 10.0:
                 break
         if not os.path.exists(test.result):
             screenshot.save(test.result)
         if last_change - start > (test.runtime / self.speed) - 1.0:
             print("Time for test: %s = %g" % (test, (last_change - start) * self.speed))
         p.terminate()
+
+    def measureStartupTime(self):
+        p = self.startProcess("startup_time_test.gb")
+        reference = PIL.Image.open("startup_time_test.png")
+        start = time.time()
+        while findWindow(self.title_check) is None:
+            time.sleep(0.01)
+        while True:
+            screenshot = getScreenshot(self.title_check)
+            if screenshot.size[0] != 160 or screenshot.size[1] != 144:
+                continue
+            colors = screenshot.getcolors()
+            if colors is None or len(colors) != 2:
+                continue
+            if not compareImage(screenshot, reference):
+                continue
+            break
+        startup_time = time.time() - start
+        p.terminate()
+        return startup_time
 
     def __repr__(self):
         return self.name

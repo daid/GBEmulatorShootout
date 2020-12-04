@@ -19,14 +19,19 @@ def extract(filename, path):
     if not os.path.exists(path):
         zipfile.ZipFile(filename).extractall(path)
 
-def getScreenshot(title_check):
+def findWindow(title_check):
     def f(hwnd, results):
         title = win32gui.GetWindowText(hwnd)
         if title_check(title):
             results.append(hwnd)
     results = []
     win32gui.EnumWindows(f, results)
-    hwnd = results[0]
+    if results:
+        return results[0]
+    return None
+
+def getScreenshot(title_check):
+    hwnd = findWindow(title_check)
     rect = win32gui.GetClientRect(hwnd)
     position = win32gui.ClientToScreen(hwnd, (rect[0], rect[1]))
     return pyautogui.screenshot(region=(position[0], position[1], rect[2], rect[3]))

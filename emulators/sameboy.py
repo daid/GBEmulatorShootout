@@ -6,7 +6,7 @@ import shutil
 
 class SameBoy(Emulator):
     def __init__(self):
-        super().__init__("SameBoy", startup_time=6.0)
+        super().__init__("SameBoy", startup_time=4.5)
     
     def setup(self):
         download("https://github.com/LIJI32/SameBoy/releases/download/v0.13.6/sameboy_winsdl_v0.13.6b.zip", "downloads/sameboy.zip")
