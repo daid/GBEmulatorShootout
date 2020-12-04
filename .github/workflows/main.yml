@@ -34,9 +34,19 @@ jobs:
           python -m pip install requests
           python -m pip install pywin32
       - name: Run tests
-        run: python main.py
+        run: |
+          python main.py
+          mkdir gh-pages
+          cp results.html gh-pages/index.html
       - name: Archive result
         uses: actions/upload-artifact@v2
         with:
           name: test
           path: results.html
+      - name: Deploy pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: gh-pages
+          CLEAN: true
