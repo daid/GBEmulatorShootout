@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+import shutil
 
 
 class VBA(Emulator):
