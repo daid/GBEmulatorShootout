@@ -13,7 +13,10 @@ class SameBoy(Emulator):
         extract("downloads/sameboy.zip", "emu/sameboy")
         setDPIScaling("emu/sameboy/sameboy.exe")
         os.makedirs(os.path.join(os.environ["APPDATA"], "SameBoy"), exist_ok=True)
-        shutil.copyfile(os.path.join(os.path.dirname(__file__), "sameboy.prefs.bin"), os.path.join(os.environ["APPDATA"], "SameBoy", "prefs.bin"))
 
-    def startProcess(self, rom):
+    def startProcess(self, rom, *, gbc=False):
+        if gbc:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "sameboy.prefs.gbc.bin"), os.path.join(os.environ["APPDATA"], "SameBoy", "prefs.bin"))
+        else:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "sameboy.prefs.dmg.bin"), os.path.join(os.environ["APPDATA"], "SameBoy", "prefs.bin"))
         return subprocess.Popen(["emu/sameboy/sameboy.exe", os.path.abspath(rom)], cwd="emu/sameboy")

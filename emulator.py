@@ -15,7 +15,7 @@ class Emulator:
     def setup(self):
         raise NotImplementedError()
 
-    def startProcess(self, rom):
+    def startProcess(self, rom, *, gbc=False):
         raise NotImplementedError()
 
     def postStartup(self):
@@ -28,7 +28,7 @@ class Emulator:
         if os.path.exists(sav_file):
             os.unlink(sav_file)
         
-        p = self.startProcess(test.rom)
+        p = self.startProcess(test.rom, gbc=test.gbc)
         time.sleep(self.startup_time + 5.0)
         self.postStartup()
         start_time = time.time()
@@ -42,7 +42,7 @@ class Emulator:
         return test.checkResult(screenshot), screenshot
     
     def getRunTimeFor(self, test):
-        p = self.startProcess(test.rom)
+        p = self.startProcess(test.rom, gbc=test.gbc)
         time.sleep(self.startup_time)
         start = time.time()
         last_change = time.time()
@@ -60,6 +60,7 @@ class Emulator:
         if last_change - start > (test.runtime / self.speed) - 1.0:
             print("Time for test: %s = %g" % (test, (last_change - start) * self.speed))
         p.terminate()
+        return last_change - start
 
     def measureStartupTime(self):
         p = self.startProcess("startup_time_test.gb")

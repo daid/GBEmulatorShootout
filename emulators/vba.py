@@ -13,5 +13,5 @@ class VBA(Emulator):
         setDPIScaling("emu/vba/VisualBoyAdvance.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "vba.ini"), "emu/vba/vba.ini")
 
-    def startProcess(self, rom):
+    def startProcess(self, rom, *, gbc=False):
         return subprocess.Popen(["emu/vba/VisualBoyAdvance.exe", os.path.abspath(rom)], cwd="emu/vba")
