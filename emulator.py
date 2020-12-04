@@ -29,7 +29,7 @@ class Emulator:
             os.unlink(sav_file)
         
         p = self.startProcess(test.rom)
-        time.sleep(self.startup_time)
+        time.sleep(self.startup_time + 5.0)
         self.postStartup()
         start_time = time.time()
         while time.time() - start_time < test.runtime / self.speed:
