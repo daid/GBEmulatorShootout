@@ -29,11 +29,11 @@ if False:
     for emulator in emulators:
         print("Startup time: %s = %g" % (emulator, emulator.measureStartupTime(test)))
 
-if __name__ == "__main__":
+if False:
     for test in tests:
         emulators[0].getRunTimeFor(test)
 
-if False:
+if __name__ == "__main__":
     results = {}
     for emulator in emulators:
         emulator.setup()
