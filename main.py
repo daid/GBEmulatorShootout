@@ -13,6 +13,7 @@ import io
 import argparse
 
 import tests.blarg
+import tests.mooneye
 from emulators.bgb import BGB
 from emulators.vba import VBA
 from emulators.sameboy import SameBoy
@@ -25,34 +26,31 @@ emulators = [
     VBA(),
     NoCash(),
 ]
-tests = tests.blarg.all
+tests = tests.blarg.all + tests.mooneye.all
 
 def checkFilter(input, filter_data):
     if filter_data is None:
         return True
     input = str(input)
     for f in filter_data:
-        if f in input:
-            return True
-    return False
+        if f not in input:
+            return False
+    return True
 
-
-if False:
-    for emulator in emulators:
-        emulator.setup()
-        print("Startup time: %s = %g" % (emulator, emulator.measureStartupTime()))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--test', action='append', help="Filter for tests with keywords")
     parser.add_argument('--emulator', action='append', help="Filter to test only emulators with keywords")
     parser.add_argument('--get-runtime', action='store_true')
+    parser.add_argument('--get-startuptime', action='store_true')
     args = parser.parse_args()
+    
+    tests = [test for test in tests if checkFilter(test, args.test)]
+    emulators = [emulator for emulator in emulators if checkFilter(emulator, args.emulator)]
     
     if args.get_runtime:
         for emulator in emulators:
-            if not checkFilter(emulator, args.emulator):
-                continue
             emulator.setup()
             for test in tests:
                 if not checkFilter(test, args.test):
@@ -60,15 +58,18 @@ if __name__ == "__main__":
                 print("%s: %s: %g seconds" % (emulator, test, emulator.getRunTimeFor(test)))
         sys.exit()
 
+    if args.get_startuptime:
+        for emulator in emulators:
+            emulator.setup()
+            print("Startup time: %s = %g (dmg)" % (emulator, emulator.measureStartupTime(gbc=False)))
+            print("Startup time: %s = %g (gbc)" % (emulator, emulator.measureStartupTime(gbc=True)))
+        sys.exit()
+
     results = {}
     for emulator in emulators:
-        if not checkFilter(emulator, args.emulator):
-            continue
         emulator.setup()
         results[emulator] = {}
         for test in tests:
-            if not checkFilter(test, args.test):
-                continue
             results[emulator][test] = emulator.run(test)
 
     f = open("results.html", "wt")
@@ -78,15 +79,9 @@ if __name__ == "__main__":
         f.write("  <th>%s</th>\n" % (test))
     f.write("</tr>\n");
     for emulator in emulators:
-        if not checkFilter(emulator, args.emulator):
-            continue
-
         passed = len([result[0] for result in results[emulator].values() if result[0]])
         f.write("<tr><td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
         for test in tests:
-            if not checkFilter(test, args.test):
-                continue
-
             tmp = io.BytesIO()
             results[emulator][test][1].save(tmp, "png")
             result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]

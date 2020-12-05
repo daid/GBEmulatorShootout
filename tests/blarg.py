@@ -32,7 +32,7 @@ all = [
     Test("blarg/oam_bug/4-scanline_timing.gb", runtime=1.5),
     Test("blarg/oam_bug/5-timing_bug.gb", runtime=1.5),
     Test("blarg/oam_bug/6-timing_no_bug.gb", runtime=1.5),
-    Test("blarg/oam_bug/7-timing_effect.gb", runtime=8.5),
+    # Test("blarg/oam_bug/7-timing_effect.gb", runtime=8.5), # This test is broken.
     Test("blarg/oam_bug/8-instr_effect.gb", runtime=1.5),
 
     Test("blarg/dmg_sound/01-registers.gb", runtime=2.0),

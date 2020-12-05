@@ -17,6 +17,8 @@ class SameBoy(Emulator):
     def startProcess(self, rom, *, gbc=False):
         if gbc:
             shutil.copyfile(os.path.join(os.path.dirname(__file__), "sameboy.prefs.gbc.bin"), os.path.join(os.environ["APPDATA"], "SameBoy", "prefs.bin"))
+            self.startup_time = 4.7
         else:
             shutil.copyfile(os.path.join(os.path.dirname(__file__), "sameboy.prefs.dmg.bin"), os.path.join(os.environ["APPDATA"], "SameBoy", "prefs.bin"))
+            self.startup_time = 2.5
         return subprocess.Popen(["emu/sameboy/sameboy.exe", os.path.abspath(rom)], cwd="emu/sameboy")

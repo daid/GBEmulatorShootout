@@ -60,13 +60,11 @@ class Emulator:
                 break
         if not os.path.exists(test.result):
             screenshot.save(test.result)
-        if last_change - start > (test.runtime / self.speed) - 1.0:
-            print("Time for test: %s = %g" % (test, (last_change - start) * self.speed))
         p.terminate()
         return last_change - start
 
-    def measureStartupTime(self):
-        p = self.startProcess("startup_time_test.gb")
+    def measureStartupTime(self, gbc=False):
+        p = self.startProcess("startup_time_test.gb", gbc=gbc)
         reference = PIL.Image.open("startup_time_test.png")
         start = time.time()
         while findWindow(self.title_check) is None:
