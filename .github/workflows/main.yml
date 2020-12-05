@@ -47,4 +47,10 @@ jobs:
           git config --global user.email "github@actions"
           git clone --single-branch --branch gh-pages https://github.com/daid/GBEmulatorShootout.git pages
           cp results.html pages/index.html
-          cd pages && git commit -a -m 'Update' && git push
+          cd pages && git commit -a -m 'Update'
+      - name: Push page changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          directory: pages
