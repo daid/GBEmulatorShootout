@@ -47,6 +47,7 @@ def getScreenshot(title_check):
             if title:
                 print(hwnd, title)
         win32gui.EnumWindows(f, None)
+        return None
     rect = win32gui.GetClientRect(hwnd)
     position = win32gui.ClientToScreen(hwnd, (rect[0], rect[1]))
     return pyautogui.screenshot(region=(position[0], position[1], rect[2], rect[3]))

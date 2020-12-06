@@ -43,9 +43,10 @@ class Emulator:
         while time.time() - start_time < test.runtime / self.speed:
             time.sleep(0.1)
             screenshot = self.getScreenshot()
-            if test.checkResult(screenshot) == True:
+            if screenshot is not None and test.checkResult(screenshot) == True:
                 print("Early exit: %g" % (time.time() - start_time))
                 break
+            assert p.poll() is None, "Process crashed?"
         p.terminate()
         return test.checkResult(screenshot), screenshot
     
@@ -53,7 +54,7 @@ class Emulator:
         p = self.startProcess(test.rom, gbc=test.gbc)
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
-            assert p.poll() is None
+            assert p.poll() is None, "Process crashed?"
         time.sleep(self.startup_time)
         start = time.time()
         last_change = time.time()
@@ -66,6 +67,7 @@ class Emulator:
             prev = screenshot
             if time.time() - last_change > 10.0:
                 break
+            assert p.poll() is None, "Process crashed?"
         if not os.path.exists(test.result):
             screenshot.save(test.result)
         p.terminate()

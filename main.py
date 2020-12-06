@@ -24,9 +24,9 @@ from emulators.gambatte import GambatteSpeedrun
 
 
 emulators = [
+    MGBA(),
     SameBoy(),
     BGB(),
-    MGBA(),
     VBA(),
     NoCash(),
     GambatteSpeedrun(),
