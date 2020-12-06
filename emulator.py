@@ -32,7 +32,12 @@ class Emulator:
             os.unlink(sav_file)
         
         p = self.startProcess(test.rom, gbc=test.gbc)
-        time.sleep(self.startup_time + 5.0)
+        process_create_time = time.time()
+        while findWindow(self.title_check) is None:
+            time.sleep(0.01)
+            assert p.poll() is None, "Process crashed?"
+            assert time.time() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
+        time.sleep(self.startup_time + 1.0)
         self.postStartup()
         start_time = time.time()
         while time.time() - start_time < test.runtime / self.speed:
@@ -46,6 +51,9 @@ class Emulator:
     
     def getRunTimeFor(self, test):
         p = self.startProcess(test.rom, gbc=test.gbc)
+        while findWindow(self.title_check) is None:
+            time.sleep(0.01)
+            assert p.poll() is None
         time.sleep(self.startup_time)
         start = time.time()
         last_change = time.time()
@@ -66,9 +74,11 @@ class Emulator:
     def measureStartupTime(self, gbc=False):
         p = self.startProcess("startup_time_test.gb", gbc=gbc)
         reference = PIL.Image.open("startup_time_test.png")
-        start = time.time()
+        start_pre_window_time = time.time()
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
+            assert p.poll() is None
+        post_window_time = time.time()
         print("Window found")
         while True:
             screenshot = self.getScreenshot()
@@ -80,7 +90,7 @@ class Emulator:
             if not compareImage(screenshot, reference):
                 continue
             break
-        startup_time = time.time() - start
+        startup_time = time.time() - post_window_time
         p.terminate()
         return startup_time
 
