@@ -46,7 +46,7 @@ class Emulator:
             if screenshot is not None and test.checkResult(screenshot) == True:
                 print("Early exit: %g" % (time.time() - start_time))
                 break
-            assert p.poll() is None, "Process crashed?"
+            assert p.poll() is None, "Process crashed? (exit: %d)" % (p.returncode)
         p.terminate()
         return test.checkResult(screenshot), screenshot
     
