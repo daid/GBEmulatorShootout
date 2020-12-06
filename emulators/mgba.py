@@ -17,4 +17,6 @@ class MGBA(Emulator):
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
+        if screenshot is None:
+            return None
         return screenshot.crop((0, screenshot.size[1] - 144, 160, screenshot.size[1]))
