@@ -8,6 +8,7 @@ class Test:
     def __init__(self, rom, *, runtime, result=None, gbc=False):
         self.name = rom
         self.rom = os.path.join("tests", rom)
+        assert os.path.exists(self.rom)
         self.runtime = runtime
         if result is None:
             result = os.path.splitext(rom)[0] + ".png"

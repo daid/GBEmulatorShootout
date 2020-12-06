@@ -14,6 +14,7 @@ import argparse
 
 import tests.blarg
 import tests.mooneye
+import tests.acid
 from emulators.bgb import BGB
 from emulators.vba import VBA
 from emulators.mgba import MGBA
@@ -30,7 +31,7 @@ emulators = [
     NoCash(),
     GambatteSpeedrun(),
 ]
-tests = tests.blarg.all + tests.mooneye.all
+tests = tests.blarg.all + tests.mooneye.all + tests.acid.all
 
 def checkFilter(input, filter_data):
     if filter_data is None:
@@ -52,6 +53,9 @@ if __name__ == "__main__":
     
     tests = [test for test in tests if checkFilter(test, args.test)]
     emulators = [emulator for emulator in emulators if checkFilter(emulator, args.emulator)]
+    
+    print("%d emulators" % (len(emulators)))
+    print("%d tests" % (len(tests)))
     
     if args.get_runtime:
         for emulator in emulators:
