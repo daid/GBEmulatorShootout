@@ -69,6 +69,7 @@ class Emulator:
         start = time.time()
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
+        print("Window found")
         while True:
             screenshot = self.getScreenshot()
             if screenshot.size[0] != 160 or screenshot.size[1] != 144:

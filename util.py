@@ -16,8 +16,16 @@ def download(url, filename):
         open(filename, "wb").write(r.content)
 
 def extract(filename, path):
-    if not os.path.exists(path):
+    if os.path.exists(path):
+        return
+    if filename.endswith(".zip"):
         zipfile.ZipFile(filename).extractall(path)
+    elif filename.endswith(".7z"):
+        os.makedirs(path, exist_ok=True)
+        if os.path.exists("c:/Program Files/7-Zip/7z.exe"):
+            subprocess.run(["c:/Program Files/7-Zip/7z.exe", "x", os.path.abspath(filename)], cwd=path)
+        else:
+            subprocess.run(["7z", "x", os.path.abspath(filename)], cwd=path)        
 
 def findWindow(title_check):
     def f(hwnd, results):

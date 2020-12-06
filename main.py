@@ -16,15 +16,19 @@ import tests.blarg
 import tests.mooneye
 from emulators.bgb import BGB
 from emulators.vba import VBA
+from emulators.mgba import MGBA
 from emulators.sameboy import SameBoy
 from emulators.nocash import NoCash
+from emulators.gambatte import GambatteSpeedrun
 
 
 emulators = [
     SameBoy(),
     BGB(),
+    MGBA(),
     VBA(),
     NoCash(),
+    GambatteSpeedrun(),
 ]
 tests = tests.blarg.all + tests.mooneye.all
 
