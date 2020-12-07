@@ -11,19 +11,24 @@ class GambatteSpeedrun(Emulator):
         self.title_check = lambda title: "Gambatte-Speedrun" in title
 
     def setup(self):
-        download("https://github.com/pokemon-speedrunning/gambatte-speedrun/releases/download/r717/gambatte-speedrun-r717-psr.zip", "downloads/gambatte-speedrun.zip")
+        download("https://github.com/pokemon-speedrunning/gambatte-speedrun/releases/download/r717/gambatte-speedrun-r717-theothers.zip", "downloads/gambatte-speedrun.zip")
         extract("downloads/gambatte-speedrun.zip", "emu/gambatte-speedrun")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/gambatte-speedrun/cgb_bios.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/gambatte-speedrun/dmg_boot.bin")
         setDPIScaling("emu/gambatte-speedrun/gambatte_speedrun.exe")
 
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
         winreg.SetValueEx(key, "biosFilename", 0, 1, os.path.abspath("emu/gambatte-speedrun/cgb_bios.bin"))
+        winreg.SetValueEx(key, "biosFilenameDMG", 0, 1, os.path.abspath("emu/gambatte-speedrun/dmg_boot.bin"))
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\video")
         winreg.SetValueEx(key, "windowSize", 0, 1, "@Size(160 144)")
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\sound")
         winreg.SetValueEx(key, "engineIndex", 0, 1, "Null")
 
     def startProcess(self, rom, *, gbc=False):
+        key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
+        winreg.SetValueEx(key, "platform", 0, winreg.REG_DWORD, 1 if gbc else 0)
+        self.startup_time = 4.0 if gbc else 6.0
         return subprocess.Popen(["emu/gambatte-speedrun/gambatte_speedrun.exe", os.path.abspath(rom)], cwd="emu/gambatte-speedrun")
 
     def getScreenshot(self):
