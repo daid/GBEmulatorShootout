@@ -8,8 +8,6 @@ import win32gui
 import PIL.Image
 import PIL.ImageChops
 import sys
-import base64
-import io
 import argparse
 
 import tests.blarg
@@ -21,6 +19,7 @@ from emulators.mgba import MGBA
 from emulators.sameboy import SameBoy
 from emulators.nocash import NoCash
 from emulators.gambatte import GambatteSpeedrun
+from util import *
 
 
 emulators = [
@@ -67,10 +66,16 @@ if __name__ == "__main__":
         sys.exit()
 
     if args.get_startuptime:
+        f = open("startuptime.html", "wt")
+        f.write("<html><body>\n")
         for emulator in emulators:
             emulator.setup()
-            print("Startup time: %s = %g (dmg)" % (emulator, emulator.measureStartupTime(gbc=False)))
-            print("Startup time: %s = %g (gbc)" % (emulator, emulator.measureStartupTime(gbc=True)))
+            dmg_start_time, dmg_screenshot = emulator.measureStartupTime(gbc=False)
+            gbc_start_time, gbc_screenshot = emulator.measureStartupTime(gbc=True)
+            print("Startup time: %s = %g (dmg) %g (gbc)" % (emulator, dmg_start_time, gbc_start_time))
+            f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(dmg_screenshot)))
+            f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(gbc_screenshot)))
+        f.write("</body></html>")
         sys.exit()
 
     results = {}
@@ -90,9 +95,7 @@ if __name__ == "__main__":
         passed = len([result[0] for result in results[emulator].values() if result[0]])
         f.write("<tr><td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
         for test in tests:
-            tmp = io.BytesIO()
-            results[emulator][test][1].save(tmp, "png")
             result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]
-            f.write("  <td>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, base64.b64encode(tmp.getvalue()).decode('ascii')))
+            f.write("  <td>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, imageToBase64(results[emulator][test][1])))
         f.write("</tr>\n")
     f.write("</table></body></html>")

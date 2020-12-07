@@ -32,19 +32,19 @@ class Emulator:
             os.unlink(sav_file)
         
         p = self.startProcess(test.rom, gbc=test.gbc)
-        process_create_time = time.time()
+        process_create_time = time.monotonic()
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
-            assert time.time() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
+            assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
         time.sleep(self.startup_time + 1.0)
         self.postStartup()
-        start_time = time.time()
-        while time.time() - start_time < test.runtime / self.speed:
+        start_time = time.monotonic()
+        while time.monotonic() - start_time < test.runtime / self.speed:
             time.sleep(0.1)
             screenshot = self.getScreenshot()
             if screenshot is not None and test.checkResult(screenshot) == True:
-                print("Early exit: %g" % (time.time() - start_time))
+                print("Early exit: %g" % (time.monotonic() - start_time))
                 break
             assert p.poll() is None, "Process crashed? (exit: %d)" % (p.returncode)
         p.terminate()
@@ -56,16 +56,16 @@ class Emulator:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
         time.sleep(self.startup_time)
-        start = time.time()
-        last_change = time.time()
+        start = time.monotonic()
+        last_change = time.monotonic()
         prev = None
         while True:
             time.sleep(0.1)
             screenshot = self.getScreenshot()
             if prev is not None and not compareImage(screenshot, prev):
-                last_change = time.time()
+                last_change = time.monotonic()
             prev = screenshot
-            if time.time() - last_change > 10.0:
+            if time.monotonic() - last_change > 10.0:
                 break
             assert p.poll() is None, "Process crashed?"
         if not os.path.exists(test.result):
@@ -73,16 +73,19 @@ class Emulator:
         p.terminate()
         return last_change - start
 
-    def measureStartupTime(self, gbc=False):
+    def measureStartupTime(self, *, gbc=False):
         p = self.startProcess("startup_time_test.gb", gbc=gbc)
         reference = PIL.Image.open("startup_time_test.png")
-        start_pre_window_time = time.time()
+        start_pre_window_time = time.monotonic()
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
-            assert p.poll() is None
-        post_window_time = time.time()
+            if p.poll() is not None or time.monotonic() - start_pre_window_time > 60.0:
+                return None, fullscreenScreenshot()
+        post_window_time = time.monotonic()
         print("Window found")
         while True:
+            if p.poll() is not None or time.monotonic() - post_window_time > 60.0:
+                return None, fullscreenScreenshot()
             screenshot = self.getScreenshot()
             if screenshot.size[0] != 160 or screenshot.size[1] != 144:
                 continue
@@ -92,9 +95,10 @@ class Emulator:
             if not compareImage(screenshot, reference):
                 continue
             break
-        startup_time = time.time() - post_window_time
+        startup_time = time.monotonic() - post_window_time
+        screenshot = fullscreenScreenshot()
         p.terminate()
-        return startup_time
+        return startup_time, screenshot
 
     def __repr__(self):
         return self.name

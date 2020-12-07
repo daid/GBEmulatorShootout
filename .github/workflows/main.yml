@@ -33,10 +33,18 @@ jobs:
           python -m pip install pillow
           python -m pip install requests
           python -m pip install pywin32
+      - name: Check emulator startups
+        run: |
+          python main.py --get-startuptime
+      - name: Archive startup time result
+        uses: actions/upload-artifact@v2
+        with:
+          name: startuptime
+          path: startuptime.html
       - name: Run tests
         run: |
           python main.py
-      - name: Archive result
+      - name: Archive test result
         uses: actions/upload-artifact@v2
         with:
           name: results

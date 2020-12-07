@@ -6,6 +6,8 @@ import subprocess
 import win32gui
 import PIL.Image
 import PIL.ImageChops
+import io
+import base64
 
 
 def download(url, filename):
@@ -52,6 +54,9 @@ def getScreenshot(title_check):
     position = win32gui.ClientToScreen(hwnd, (rect[0], rect[1]))
     return pyautogui.screenshot(region=(position[0], position[1], rect[2], rect[3]))
 
+def fullscreenScreenshot():
+    return pyautogui.screenshot()
+
 def setDPIScaling(executable):
     subprocess.run(["REG", "ADD", "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers", "/V", os.path.abspath(executable), "/T", "REG_SZ", "/D", "~ HIGHDPIAWARE", "/F"])
 
@@ -63,3 +68,8 @@ def compareImage(a, b):
         if color > 40:
             return False
     return True
+
+def imageToBase64(img):
+    tmp = io.BytesIO()
+    img.save(tmp, "png")
+    return base64.b64encode(tmp.getvalue()).decode('ascii')
