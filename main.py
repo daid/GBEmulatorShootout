@@ -89,18 +89,19 @@ if __name__ == "__main__":
         results[emulator] = {}
         for test in tests:
             results[emulator][test] = emulator.run(test)
+    emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result[0]]), reverse=True)
 
     f = open("results.html", "wt")
-    f.write("<html><head><style>table { border-collapse: collapse } td { border: solid 1px }</style></head><body><table>\n")
-    f.write("<tr><th>-</th>\n")
-    for test in tests:
-        f.write("  <th>%s</th>\n" % (test))
-    f.write("</tr>\n");
+    f.write("<html><head><style>table { border-collapse: collapse } td { border: solid 1px } .PASS { background-color: #80FF80 } .FAILED { background-color: #FF8080 } .UNKNOWN { background-color: #FFFF80 } </style></head><body><table>\n")
+    f.write("<tr><td>-</td>\n")
     for emulator in emulators:
         passed = len([result[0] for result in results[emulator].values() if result[0]])
-        f.write("<tr><td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
-        for test in tests:
+        f.write("  <td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
+    f.write("</tr>\n");
+    for test in tests:
+        f.write("<tr><td>%s</td>\n" % (test))
+        for emulator in emulators:
             result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]
-            f.write("  <td>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, imageToBase64(results[emulator][test][1])))
+            f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, result_string, imageToBase64(results[emulator][test][1])))
         f.write("</tr>\n")
     f.write("</table></body></html>")
