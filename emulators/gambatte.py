@@ -20,6 +20,8 @@ class GambatteSpeedrun(Emulator):
         winreg.SetValueEx(key, "biosFilename", 0, 1, os.path.abspath("emu/gambatte-speedrun/cgb_bios.bin"))
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\video")
         winreg.SetValueEx(key, "windowSize", 0, 1, "@Size(160 144)")
+        key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\sound")
+        winreg.SetValueEx(key, "engineIndex", 0, 1, "Null")
 
     def startProcess(self, rom, *, gbc=False):
         return subprocess.Popen(["emu/gambatte-speedrun/gambatte_speedrun.exe", os.path.abspath(rom)], cwd="emu/gambatte-speedrun")
