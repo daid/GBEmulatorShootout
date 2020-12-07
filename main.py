@@ -72,7 +72,8 @@ if __name__ == "__main__":
             emulator.setup()
             dmg_start_time, dmg_screenshot = emulator.measureStartupTime(gbc=False)
             gbc_start_time, gbc_screenshot = emulator.measureStartupTime(gbc=True)
-            print("Startup time: %s = %g (dmg) %g (gbc)" % (emulator, dmg_start_time, gbc_start_time))
+            if dmg_start_time is not None and gbc_start_time is not None:
+                print("Startup time: %s = %g (dmg) %g (gbc)" % (emulator, dmg_start_time, gbc_start_time))
             f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(dmg_screenshot)))
             f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(gbc_screenshot)))
         f.write("</body></html>")
