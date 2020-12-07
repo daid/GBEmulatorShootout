@@ -37,7 +37,7 @@ class Emulator:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
             assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
-        time.sleep(self.startup_time + 1.0)
+        time.sleep(self.startup_time + 5.0)
         self.postStartup()
         start_time = time.monotonic()
         while time.monotonic() - start_time < test.runtime / self.speed:
@@ -80,6 +80,7 @@ class Emulator:
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
             if p.poll() is not None or time.monotonic() - start_pre_window_time > 60.0:
+                print("Process gone or timeout")
                 if p.poll() is None:
                     p.terminate()
                 return None, fullscreenScreenshot()
@@ -87,6 +88,7 @@ class Emulator:
         print("Window found")
         while True:
             if p.poll() is not None or time.monotonic() - post_window_time > 60.0:
+                print("Process gone or timeout")
                 if p.poll() is None:
                     p.terminate()
                 return None, fullscreenScreenshot()

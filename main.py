@@ -19,6 +19,7 @@ from emulators.mgba import MGBA
 from emulators.sameboy import SameBoy
 from emulators.nocash import NoCash
 from emulators.gambatte import GambatteSpeedrun
+from emulators.emulicious import Emulicious
 from util import *
 
 
@@ -29,6 +30,7 @@ emulators = [
     VBA(),
     NoCash(),
     GambatteSpeedrun(),
+    Emulicious(),
 ]
 tests = tests.blarg.all + tests.mooneye.all + tests.acid.all
 
