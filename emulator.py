@@ -18,6 +18,9 @@ class Emulator:
     def startProcess(self, rom, *, gbc=False):
         raise NotImplementedError()
 
+    def postWindowCreation(self):
+        pass
+
     def postStartup(self):
         pass
     
@@ -37,6 +40,7 @@ class Emulator:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
             assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
+        self.postWindowCreation()
         time.sleep(self.startup_time + 1.0)
         self.postStartup()
         start_time = time.monotonic()

@@ -6,7 +6,7 @@ import shutil
 class BGB(Emulator):
     def __init__(self):
         super().__init__("bgb", startup_time=0.6)
-        self.speed = 1.0
+        self.speed = 10.0
 
     def setup(self):
         download("https://bgb.bircd.org/bgb.zip", "downloads/bgb.zip")
