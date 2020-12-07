@@ -11,11 +11,14 @@ class Emulicious(Emulator):
         download("https://emulicious.net/Emulicious.zip", "downloads/Emulicious.zip")
         extract("downloads/Emulicious.zip", "emu/emulicious")
         setDPIScaling("emu/emulicious/Emulicious.exe")
-        shutil.copyfile(os.path.join(os.path.dirname(__file__), "emulicious.ini"), "emu/emulicious/Emulicious.ini")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/emulicious/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/emulicious/dmg_boot.bin")
 
     def startProcess(self, rom, *, gbc=False):
+        if gbc:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "emulicious.gbc.ini"), "emu/emulicious/Emulicious.ini")
+        else:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "emulicious.dmg.ini"), "emu/emulicious/Emulicious.ini")
         return subprocess.Popen(["java", "-jar", "Emulicious.jar", "-throttle", "10000", os.path.abspath(rom)], cwd="emu/emulicious")
 
     def getScreenshot(self):
