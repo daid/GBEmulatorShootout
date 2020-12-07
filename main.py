@@ -24,7 +24,7 @@ from util import *
 
 
 emulators = [
-    MGBA(),
+    # MGBA(), MGBA is currently not working, so skip that.
     SameBoy(),
     BGB(),
     VBA(),

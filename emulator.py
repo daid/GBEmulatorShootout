@@ -37,10 +37,10 @@ class Emulator:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
             assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
-        time.sleep(self.startup_time + 5.0)
+        time.sleep(self.startup_time + 1.0)
         self.postStartup()
         start_time = time.monotonic()
-        while time.monotonic() - start_time < test.runtime / self.speed:
+        while time.monotonic() - start_time < (test.runtime / self.speed) + 5.0:
             time.sleep(0.1)
             screenshot = self.getScreenshot()
             if screenshot is not None and test.checkResult(screenshot) == True:

@@ -12,7 +12,7 @@ all = [
     Test("blarg/cpu_instrs/08-misc_instrs.gb", runtime=1.0),
     Test("blarg/cpu_instrs/09-op_r,r.gb", runtime=7.0),
     Test("blarg/cpu_instrs/10-bit_ops.gb", runtime=8.0),
-    Test("blarg/cpu_instrs/11-op_a,(hl).gb", runtime=10.0),
+    Test("blarg/cpu_instrs/11-op_a,(hl).gb", runtime=13.0),
 
     Test("blarg/halt_bug.gb", runtime=2.0),
     Test("blarg/instr_timing.gb", runtime=1.0),
