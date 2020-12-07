@@ -17,6 +17,16 @@ def download(url, filename):
         r = requests.get(url, allow_redirects=True)
         open(filename, "wb").write(r.content)
 
+def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n):
+    if not os.path.exists(filename):
+        r = requests.get("https://api.github.com/repos/%s/releases/latest" % (repo))
+        url = None
+        for asset in r.json()["assets"]:
+            if filter(asset["name"]):
+                url = asset["browser_download_url"]
+                break
+        download(url, filename)
+
 def extract(filename, path):
     if os.path.exists(path):
         return False

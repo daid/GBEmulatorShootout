@@ -11,7 +11,7 @@ class GambatteSpeedrun(Emulator):
         self.title_check = lambda title: "Gambatte-Speedrun" in title
 
     def setup(self):
-        download("https://github.com/pokemon-speedrunning/gambatte-speedrun/releases/download/r717/gambatte-speedrun-r717-theothers.zip", "downloads/gambatte-speedrun.zip")
+        downloadGithubRelease("pokemon-speedrunning/gambatte-speedrun", "downloads/gambatte-speedrun.zip", filter=lambda n: "theothers" in n and n.endswith(".zip"))
         extract("downloads/gambatte-speedrun.zip", "emu/gambatte-speedrun")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/gambatte-speedrun/cgb_bios.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/gambatte-speedrun/dmg_boot.bin")

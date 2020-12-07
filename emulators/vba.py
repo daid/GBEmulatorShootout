@@ -25,7 +25,7 @@ class VBAM(Emulator):
         self.title_check = lambda title: "VisualBoyAdvance-M" in title
     
     def setup(self):
-        download("https://github.com/visualboyadvance-m/visualboyadvance-m/releases/download/v2.1.4/visualboyadvance-m-Win-64bit.zip", "downloads/vba-m.zip")
+        downloadGithubRelease("visualboyadvance-m/visualboyadvance-m", "downloads/vba-m.zip", filter=lambda n: "Win" in n and "64bit" in n and n.endswith(".zip"))
         extract("downloads/vba-m.zip", "emu/vba-m")
         setDPIScaling("emu/vba-m/visualboyadvance-m.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.ini"), "emu/vba-m/vbam.ini")

@@ -9,8 +9,9 @@ class MGBA(Emulator):
         self.speed = 1.0
 
     def setup(self):
-        download("https://github.com/mgba-emu/mgba/releases/download/0.8.4/mGBA-0.8.4-win32.7z", "downloads/mgba.7z")
+        downloadGithubRelease("mgba-emu/mgba", "downloads/mgba.7z", filter=lambda n: "win32" in n and n.endswith(".7z"))
         extract("downloads/mgba.7z", "emu/mgba")
+        # TODO: Fix path containing version number
         setDPIScaling("emu/mgba/mGBA-0.8.4-win32/mGBA.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "emu/mgba/mGBA-0.8.4-win32/qt.ini")
     

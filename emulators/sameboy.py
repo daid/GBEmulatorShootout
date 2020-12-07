@@ -10,7 +10,7 @@ class SameBoy(Emulator):
         super().__init__("SameBoy", startup_time=4.5)
     
     def setup(self):
-        download("https://github.com/LIJI32/SameBoy/releases/download/v0.13.6/sameboy_winsdl_v0.13.6b.zip", "downloads/sameboy.zip")
+        downloadGithubRelease("LIJI32/SameBoy", "downloads/sameboy.zip")
         if extract("downloads/sameboy.zip", "emu/sameboy"):
             os.unlink("emu/sameboy/cgb_boot.bin")
             os.unlink("emu/sameboy/dmg_boot.bin")
