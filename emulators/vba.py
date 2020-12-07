@@ -12,6 +12,8 @@ class VBA(Emulator):
         extract("downloads/vba.zip", "emu/vba")
         setDPIScaling("emu/vba/VisualBoyAdvance.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "vba.ini"), "emu/vba/vba.ini")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/vba/cgb_bios.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba/dmg_boot.bin")
 
     def startProcess(self, rom, *, gbc=False):
         return subprocess.Popen(["emu/vba/VisualBoyAdvance.exe", os.path.abspath(rom)], cwd="emu/vba")
@@ -27,6 +29,8 @@ class VBAM(Emulator):
         extract("downloads/vba-m.zip", "emu/vba-m")
         setDPIScaling("emu/vba-m/visualboyadvance-m.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.ini"), "emu/vba-m/vbam.ini")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/vba-m/cgb_bios.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba-m/dmg_boot.bin")
 
     def startProcess(self, rom, *, gbc=False):
         return subprocess.Popen(["emu/vba-m/visualboyadvance-m.exe", os.path.abspath(rom)], cwd="emu/vba-m")
