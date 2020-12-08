@@ -14,9 +14,10 @@ class MGBA(Emulator):
         # TODO: Fix path containing version number
         setDPIScaling("emu/mgba/mGBA-0.8.4-win32/mGBA.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "emu/mgba/mGBA-0.8.4-win32/qt.ini")
+        shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "emu/mgba/mGBA-0.8.4-win32/config.ini")
     
     def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen(["emu/mgba/mGBA-0.8.4-win32/mGBA.exe", "-1", os.path.abspath(rom)], cwd="emu/mgba/mGBA-0.8.4-win32/")
+        return subprocess.Popen(["emu/mgba/mGBA-0.8.4-win32/mGBA.exe", os.path.abspath(rom)], cwd="emu/mgba/mGBA-0.8.4-win32/")
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
