@@ -15,11 +15,13 @@ class MGBA(Emulator):
         extract("downloads/mgba.7z", "emu/mgba")
         self.path = os.path.join("emu", "mgba", os.listdir("emu/mgba")[0])
         setDPIScaling("%s/mGBA.exe" % (self.path))
+        setDPIScaling("%s/mgba-sdl.exe" % (self.path))
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "%s/qt.ini" % (self.path))
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "%s/config.ini" % (self.path))
     
     def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen(["%s/mGBA.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
+        #return subprocess.Popen(["%s/mGBA.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
+        return subprocess.Popen(["%s/mgba-sdl.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
