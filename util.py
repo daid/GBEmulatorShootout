@@ -76,7 +76,7 @@ def compareImage(a, b):
     b = b.convert(mode="L", dither=PIL.Image.NONE)
     result = PIL.ImageChops.difference(a, b)
     for count, color in result.getcolors():
-        if color > 40:
+        if color > 50:
             return False
     return True
 
