@@ -1,6 +1,7 @@
 from util import *
 from emulator import Emulator
 import shutil
+import os
 
 
 class MGBA(Emulator):
@@ -9,15 +10,16 @@ class MGBA(Emulator):
         self.speed = 1.0
 
     def setup(self):
-        downloadGithubRelease("mgba-emu/mgba", "downloads/mgba.7z", filter=lambda n: "win32" in n and n.endswith(".7z"))
+        # downloadGithubRelease("mgba-emu/mgba", "downloads/mgba.7z", filter=lambda n: "win32" in n and n.endswith(".7z"))
+        download("https://s3.amazonaws.com/mgba/mGBA-build-latest-win64.7z", "downloads/mgba.7z")
         extract("downloads/mgba.7z", "emu/mgba")
-        # TODO: Fix path containing version number
-        setDPIScaling("emu/mgba/mGBA-0.8.4-win32/mGBA.exe")
-        shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "emu/mgba/mGBA-0.8.4-win32/qt.ini")
-        shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "emu/mgba/mGBA-0.8.4-win32/config.ini")
+        self.path = os.path.join("emu", "mgba", os.listdir("emu/mgba")[0])
+        setDPIScaling("%s/mGBA.exe" % (self.path))
+        shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "%s/qt.ini" % (self.path))
+        shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "%s/config.ini" % (self.path))
     
     def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen(["emu/mgba/mGBA-0.8.4-win32/mGBA.exe", os.path.abspath(rom)], cwd="emu/mgba/mGBA-0.8.4-win32/")
+        return subprocess.Popen(["%s/mGBA.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
