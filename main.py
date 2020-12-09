@@ -14,6 +14,7 @@ import tests.blarg
 import tests.mooneye
 import tests.acid
 import tests.samesuite
+import tests.ax6
 from emulators.bgb import BGB
 from emulators.vba import VBA, VBAM
 from emulators.mgba import MGBA
@@ -34,7 +35,7 @@ emulators = [
     GambatteSpeedrun(),
     Emulicious(),
 ]
-tests = tests.acid.all + tests.blarg.all + tests.mooneye.all + tests.samesuite.all
+tests = tests.acid.all + tests.blarg.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all
 
 def checkFilter(input, filter_data):
     if filter_data is None:
