@@ -13,6 +13,11 @@ start:
   jr nz, start
   ld a, 1
   ld hl, $9000
+REPT 7
+  ld [hl+], a
+  inc hl
+ENDR
+  ld a, $ff
   ld [hl+], a
 
   ld a, LCDCF_BGON | LCDCF_ON
@@ -52,28 +57,34 @@ REPT 8
   db $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4
 ENDR
 REPT 16
-  db $e4, $e4, $ff, $ff, $ff, $ff, $ff, $ff, $e4, $e4
+  db $e4, $e4, $aa, $aa, $aa, $aa, $aa, $aa, $e4, $e4
 ENDR
 REPT 16
-  db $e4, $ff, $55, $55, $55, $55, $55, $55, $ff, $e4
+  db $e4, $aa, $55, $55, $55, $55, $55, $55, $aa, $e4
 ENDR
 REPT 16
-  db $e4, $ff, $55, $ff, $55, $55, $ff, $55, $ff, $e4
+  db $e4, $aa, $55, $aa, $55, $55, $aa, $55, $aa, $e4
 ENDR
 REPT 16
-  db $e4, $ff, $55, $55, $55, $55, $55, $55, $ff, $e4
+  db $e4, $aa, $55, $55, $55, $55, $55, $55, $aa, $e4
+ENDR
+REPT 8
+  db $e4, $aa, $55, $55, $55, $55, $55, $55, $aa, $e4
+ENDR
+REPT 8
+  db $e4, $aa, $55, $aa, $55, $55, $aa, $55, $aa, $e4
+ENDR
+REPT 8
+  db $e4, $aa, $55, $aa, $aa, $aa, $aa, $55, $aa, $e4
+ENDR
+REPT 8
+  db $e4, $aa, $55, $55, $aa, $aa, $55, $55, $aa, $e4
 ENDR
 REPT 16
-  db $e4, $ff, $55, $55, $55, $55, $55, $55, $ff, $e4
+  db $e4, $aa, $55, $55, $55, $55, $55, $55, $aa, $e4
 ENDR
 REPT 16
-  db $e4, $ff, $55, $ff, $ff, $ff, $ff, $55, $ff, $e4
-ENDR
-REPT 16
-  db $e4, $ff, $55, $55, $55, $55, $55, $55, $ff, $e4
-ENDR
-REPT 16
-  db $e4, $e4, $ff, $ff, $ff, $ff, $ff, $ff, $e4, $e4
+  db $e4, $e4, $aa, $aa, $aa, $aa, $aa, $aa, $e4, $e4
 ENDR
 REPT 16
   db $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4, $e4
