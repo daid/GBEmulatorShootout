@@ -96,14 +96,14 @@ if __name__ == "__main__":
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result[0]]), reverse=True)
 
     f = open("results.html", "wt")
-    f.write("<html><head><style>table { border-collapse: collapse } td { border: solid 1px } .PASS { background-color: #80FF80 } .FAILED { background-color: #FF8080 } .UNKNOWN { background-color: #FFFF80 } </style></head><body><table>\n")
-    f.write("<tr><td>-</td>\n")
+    f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAILED { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
+    f.write("<tr><th>-</th>\n")
     for emulator in emulators:
         passed = len([result[0] for result in results[emulator].values() if result[0]])
-        f.write("  <td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
+        f.write("  <th>%s (%d/%d)</th>\n" % (emulator, passed, len(results[emulator])))
     f.write("</tr>\n");
     for test in tests:
-        f.write("<tr><td>%s</td>\n" % (str(test).replace("/", "/&#8203;")))
+        f.write("<tr><th>%s</th>\n" % (str(test).replace("/", "/&#8203;")))
         for emulator in emulators:
             result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]
             f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, result_string, imageToBase64(results[emulator][test][1])))
