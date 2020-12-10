@@ -6,7 +6,6 @@ import shutil
 class BDM(Emulator):
     def __init__(self):
         super().__init__("Beaten Dying Moon", startup_time=5.0)
-        self.speed = 2.0
         self.title_check = lambda title: "Beaten Dying Moon" in title
 
     def setup(self):
