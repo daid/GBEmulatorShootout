@@ -103,7 +103,7 @@ if __name__ == "__main__":
         f.write("  <td>%s (%d/%d)</td>\n" % (emulator, passed, len(results[emulator])))
     f.write("</tr>\n");
     for test in tests:
-        f.write("<tr><td>%s</td>\n" % (test))
+        f.write("<tr><td>%s</td>\n" % (str(test).replace("/", "/&#8203;")))
         for emulator in emulators:
             result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]
             f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, result_string, imageToBase64(results[emulator][test][1])))

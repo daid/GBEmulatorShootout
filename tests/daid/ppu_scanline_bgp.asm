@@ -1,4 +1,4 @@
-INCLUDE "hardware.inc"
+INCLUDE "common.inc"
 
 SECTION "vblankInt", ROM0[$040]
   jp vblankInt
@@ -6,10 +6,7 @@ SECTION "vblankInt", ROM0[$040]
 SECTION "statInt", ROM0[$048]
   jp statInt
 
-SECTION "entry", ROM0[$100]
-  jp start
-
-SECTION "main", ROM0[$150]
+SECTION "main", ROM0
 start:
   ld a, [rLY]
   cp 145

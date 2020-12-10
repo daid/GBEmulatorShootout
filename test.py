@@ -5,8 +5,9 @@ from util import *
 
 
 class Test:
-    def __init__(self, rom, *, runtime, result=None, gbc=False):
-        self.name = rom
+    def __init__(self, name, *, runtime, rom=None, result=None, gbc=False):
+        rom = rom or name
+        self.name = name
         self.rom = os.path.join("tests", rom)
         assert os.path.exists(self.rom)
         self.runtime = runtime
