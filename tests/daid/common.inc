@@ -54,6 +54,69 @@ print:
   inc hl
   jr  print
 
+printHex:
+  ld   c, a
+  swap a
+  and  $0f
+  call printHexDigit
+  ld   a, c
+  and  $0f
+  jp printHexDigit
+
+printHexDigit:
+  cp   $0a
+  jr   nc, .upper
+  add  $30
+  ld   b, a
+  jr   .statWait
+.upper:
+  add  $41
+  ld   b, a
+.statWait:
+  ld  a, [rSTAT]
+  and $03
+  jr  nz, .statWait
+  ld  [hl], b
+  inc hl
+  ret
+
+; HL: vram target
+; DE: results
+; BC: expected results
+; A:  amount of results
+compareAndPrintResults:
+  and a
+  ret z
+  push af
+  ld   a, [de]
+  push hl
+  push bc
+  call printHex
+  pop  bc
+  ld  a, [de]
+  ld  h, a
+  ld  a, [bc]
+  cp  h
+  pop hl
+  jr  z, .ok
+.error:
+  ld  a, $01
+  ld  [rVBK], a
+  ld  a, $04
+  ld  [hl+], a
+  ld  [hl+], a
+  xor a
+  ld  [rVBK], a
+  jr  .done
+.ok:
+  inc hl
+  inc hl
+.done:
+  inc de
+  inc bc
+  pop af
+  dec a
+  jr  compareAndPrintResults
 
 SECTION "font", ROMX
 fontData:
