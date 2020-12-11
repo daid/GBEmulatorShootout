@@ -70,7 +70,7 @@ printHexDigit:
   ld   b, a
   jr   .statWait
 .upper:
-  add  $41
+  add  $41 - 10
   ld   b, a
 .statWait:
   ld  a, [rSTAT]

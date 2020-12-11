@@ -76,8 +76,8 @@ class Emulator:
             if time.monotonic() - last_change > 10.0:
                 break
             assert p.poll() is None, "Process crashed?"
-        if not os.path.exists(self.pass_result_filename):
-            screenshot.save(self.pass_result_filename)
+        if not os.path.exists(test.pass_result_filename):
+            screenshot.save(test.pass_result_filename)
         p.terminate()
         return last_change - start
 
