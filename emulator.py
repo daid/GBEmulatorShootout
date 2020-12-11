@@ -1,9 +1,12 @@
 import time
 import os
 import PIL.Image
+from collections import namedtuple
 
 from util import *
 
+
+TestResult = namedtuple('TestResult', ['result', 'screenshot', 'startuptime', 'runtime'])
 
 class Emulator:
     def __init__(self, name, *, startup_time=1.0):
@@ -21,9 +24,6 @@ class Emulator:
     def postWindowCreation(self):
         pass
 
-    def postStartup(self):
-        pass
-    
     def getScreenshot(self):
         return getScreenshot(self.title_check)
 
@@ -40,20 +40,24 @@ class Emulator:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
             assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
+        process_create_time = time.monotonic() - process_create_time
         self.postWindowCreation()
-        time.sleep(self.startup_time + 1.0)
-        self.postStartup()
         start_time = time.monotonic()
-        while time.monotonic() - start_time < (test.runtime / self.speed) + 5.0:
+        result = None
+        while time.monotonic() - start_time < (test.runtime / self.speed) + self.startup_time + 5.0:
             time.sleep(0.1)
             screenshot = self.getScreenshot()
-            if screenshot is not None and test.checkResult(screenshot) == True:
-                print("Early exit: %g" % (time.monotonic() - start_time))
-                break
+            if screenshot is not None:
+                result = test.checkResult(screenshot)
+                if result is not None:
+                    print("Early exit: %s: %g" % (result, time.monotonic() - start_time))
+                    break
             assert p.poll() is None, "Process crashed? (exit: %d)" % (p.returncode)
         p.terminate()
-        return test.checkResult(screenshot), screenshot
-    
+        if result is None:
+            result = "FAIL"
+        return TestResult(result=result, screenshot=screenshot, startuptime=process_create_time, runtime=time.monotonic()-start_time)
+
     def getRunTimeFor(self, test):
         p = self.startProcess(test.rom, gbc=test.gbc)
         while findWindow(self.title_check) is None:
@@ -72,8 +76,8 @@ class Emulator:
             if time.monotonic() - last_change > 10.0:
                 break
             assert p.poll() is None, "Process crashed?"
-        if not os.path.exists(test.result):
-            screenshot.save(test.result)
+        if not os.path.exists(self.pass_result_filename):
+            screenshot.save(self.pass_result_filename)
         p.terminate()
         return last_change - start
 

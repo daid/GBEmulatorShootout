@@ -2,7 +2,6 @@ from util import *
 from emulator import Emulator
 import os
 import shutil
-import time
 
 
 class SameBoy(Emulator):

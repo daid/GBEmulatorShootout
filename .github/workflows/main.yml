@@ -48,14 +48,17 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: results
-          path: results.html
+          path: |
+            results.html
+            *.json
       - name: Deploy pages
         run: |
           git config --global user.name "github actions"
           git config --global user.email "github@actions"
           git clone --single-branch --branch gh-pages https://github.com/daid/GBEmulatorShootout.git pages
           cp results.html pages/index.html
-          cd pages && git commit -a -m 'Update'
+          cp *.json pages/
+          cd pages && git add *.json && git commit -a -m 'Update'
       - name: Push page changes
         uses: ad-m/github-push-action@master
         with:

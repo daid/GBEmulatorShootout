@@ -9,6 +9,7 @@ import PIL.Image
 import PIL.ImageChops
 import sys
 import argparse
+import json
 
 import tests.blarg
 import tests.mooneye
@@ -29,7 +30,7 @@ from util import *
 
 emulators = [
     BDM(),
-    MGBA(),
+    # MGBA(),
     SameBoy(),
     BGB(),
     VBA(),
@@ -94,9 +95,13 @@ if __name__ == "__main__":
         for test in tests:
             results[emulator][test] = emulator.run(test)
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result[0]]), reverse=True)
+    
+    for emulator in emulators:
+        data = {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()}
+        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_")), "wt"))
 
     f = open("results.html", "wt")
-    f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAILED { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
+    f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAIL { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
     f.write("<tr><th>-</th>\n")
     for emulator in emulators:
         passed = len([result[0] for result in results[emulator].values() if result[0]])
@@ -105,7 +110,7 @@ if __name__ == "__main__":
     for test in tests:
         f.write("<tr><th>%s</th>\n" % (str(test).replace("/", "/&#8203;")))
         for emulator in emulators:
-            result_string = {True: "PASS", False: "FAILED", None: "UNKNOWN"}[results[emulator][test][0]]
-            f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result_string, result_string, imageToBase64(results[emulator][test][1])))
+            result = results[emulator][test]
+            f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result.result, result.result, imageToBase64(results[emulator][test][1])))
         f.write("</tr>\n")
     f.write("</table></body></html>")
