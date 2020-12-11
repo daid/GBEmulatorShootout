@@ -3,6 +3,16 @@ INCLUDE "common.inc"
 SECTION "wram", WRAM0
 wBuffer: ds TEST_SIZE
 
+; Fill all interrupt vectors in case some emulator fires them incorrectly (I LOOK AT YOU VBA!)
+SECTION "vblankInt", ROM0[$0040]
+  reti
+SECTION "statInt", ROM0[$0050]
+  reti
+SECTION "serialInt", ROM0[$0058]
+  reti
+SECTION "joypadInt", ROM0[$0060]
+  reti
+
 SECTION "main", ROM0[$150]
 testStr:
   db "Speed switch timing:", 0
@@ -31,10 +41,10 @@ palCopy:
 
   ; Setup halt to wait for vblank
   di
-  ld a, IEF_VBLANK
-  ld [rIE], a
+  ld  a, IEF_VBLANK
+  ld  [rIE], a
   xor a
-  ld [rSTAT], a
+  ld  [rSTAT], a
 
   ; turn LCD on
   ld   a, LCDCF_ON | LCDCF_BGON
@@ -51,8 +61,7 @@ palCopy:
   ld   [rIE], a
   inc  a  ; set a to 1 to switch speeds
   ld   [rKEY1], a
-  xor  a
-  ld   [rDIV], a
+  call preSwitch
   stop ; switch
 
   ld   hl, wBuffer
