@@ -30,7 +30,7 @@ from util import *
 
 emulators = [
     BDM(),
-    # MGBA(),
+    MGBA(),
     SameBoy(),
     BGB(),
     VBA(),

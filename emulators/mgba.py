@@ -21,7 +21,10 @@ class MGBA(Emulator):
     
     def startProcess(self, rom, *, gbc=False):
         #return subprocess.Popen(["%s/mGBA.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
-        return subprocess.Popen(["%s/mgba-sdl.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
+        env = {"SDL_RENDER_DRIVER": "software"}
+        for k, v in os.environ.items():
+            env[k] = v
+        return subprocess.Popen(["%s/mgba-sdl.exe" % (self.path), "-C", "gb.model=%s" % ("CGB" if gbc else "DMG"), "-C", "cgb.model=%s" % ("CGB" if gbc else "DMG"), os.path.abspath(rom)], cwd=self.path, env=env)
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
