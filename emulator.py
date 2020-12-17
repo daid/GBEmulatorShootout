@@ -96,11 +96,13 @@ class Emulator:
         print("Window found")
         while True:
             if p.poll() is not None or time.monotonic() - post_window_time > 60.0:
-                print("Process gone or timeout")
+                print("Process gone or timeout: %s" % (p.poll()))
                 if p.poll() is None:
                     p.terminate()
                 return None, fullscreenScreenshot()
             screenshot = self.getScreenshot()
+            if screenshot is None:
+                continue
             if screenshot.size[0] != 160 or screenshot.size[1] != 144:
                 continue
             colors = screenshot.getcolors()
