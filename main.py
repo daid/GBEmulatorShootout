@@ -17,6 +17,7 @@ import tests.acid
 import tests.samesuite
 import tests.ax6
 import tests.daid
+from emulators.kigb import KiGB
 from emulators.bgb import BGB
 from emulators.vba import VBA, VBAM
 from emulators.mgba import MGBA
@@ -31,6 +32,7 @@ from util import *
 emulators = [
     BDM(),
     MGBA(),
+    KiGB(),
     SameBoy(),
     BGB(),
     VBA(),
