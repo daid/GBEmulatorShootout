@@ -32,7 +32,7 @@ from util import *
 emulators = [
     BDM(),
     MGBA(),
-    KiGB(),
+    # KiGB(), Crashes
     SameBoy(),
     BGB(),
     VBA(),
