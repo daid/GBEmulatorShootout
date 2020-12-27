@@ -7,12 +7,15 @@ PASS = "PASS"
 FAIL = "FAIL"
 
 class Test:
-    def __init__(self, name, *, runtime, rom=None, result=None, gbc=False):
+    def __init__(self, name, *, runtime, rom=None, result=None, gbc=False, description=None, url=None, tags=None):
         rom = rom or name
         self.name = name
         self.rom = os.path.join("tests", rom)
         self.gbc = gbc
         self.runtime = runtime
+        self.description = description
+        self.url = url
+        self.tags = tags or set()
 
         assert os.path.exists(self.rom)
         if result is None:
