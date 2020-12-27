@@ -35,7 +35,7 @@ jobs:
           python -m pip install pywin32
       - name: Check emulator startups
         run: |
-          python main.py --get-startuptime
+          python main.py --get-startuptime --emulator !mGBA --emulator !KiGB
       - name: Archive startup time result
         uses: actions/upload-artifact@v2
         with:
@@ -43,7 +43,7 @@ jobs:
           path: startuptime.html
       - name: Run tests
         run: |
-          python main.py
+          python main.py --emulator !mGBA --emulator !KiGB
       - name: Archive test result
         uses: actions/upload-artifact@v2
         with:

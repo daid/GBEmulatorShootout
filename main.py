@@ -31,8 +31,8 @@ from util import *
 
 emulators = [
     BDM(),
-    MGBA(),
-    # KiGB(), Crashes
+    MGBA(), # Black screen on github actions
+    KiGB(), # Crashes on github actions
     SameBoy(),
     BGB(),
     VBA(),
@@ -48,8 +48,12 @@ def checkFilter(input, filter_data):
         return True
     input = str(input)
     for f in filter_data:
-        if f not in input:
-            return False
+        if f.startswith("!"):
+            if f[1:] in input:
+                return False
+        else:
+            if f not in input:
+                return False
     return True
 
 
@@ -99,8 +103,12 @@ if __name__ == "__main__":
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result == "PASS"]), reverse=True)
     
     for emulator in emulators:
-        data = {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()}
-        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_")), "wt"))
+        data = {
+            'emulator': str(emulator),
+            'date': time.time(),
+            'tests': {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()},
+        }
+        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_").lower()), "wt"))
 
     f = open("results.html", "wt")
     f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAIL { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
