@@ -44,6 +44,7 @@ jobs:
       - name: Run tests
         run: |
           python main.py --emulator !mGBA --emulator !KiGB
+          python main.py --dump-tests-json --dump-emulators-json
       - name: Archive test result
         uses: actions/upload-artifact@v2
         with:

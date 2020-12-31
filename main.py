@@ -63,6 +63,8 @@ if __name__ == "__main__":
     parser.add_argument('--emulator', action='append', help="Filter to test only emulators with keywords")
     parser.add_argument('--get-runtime', action='store_true')
     parser.add_argument('--get-startuptime', action='store_true')
+    parser.add_argument('--dump-emulators-json', action='store_true')
+    parser.add_argument('--dump-tests-json', action='store_true')
     args = parser.parse_args()
     
     tests = [test for test in tests if checkFilter(test, args.test)]
@@ -78,6 +80,20 @@ if __name__ == "__main__":
                 if not checkFilter(test, args.test):
                     continue
                 print("%s: %s: %g seconds" % (emulator, test, emulator.getRunTimeFor(test)))
+        sys.exit()
+    if args.dump_emulators_json:
+        json.dump({
+            str(emulator): {} for emulator in emulators
+        }, open("emulators.json", "wt"), indent="  ")
+    if args.dump_tests_json:
+        json.dump([
+            {
+                'name': str(test),
+                'description': test.description,
+                'url': test.url,
+            } for test in tests
+        ], open("tests.json", "wt"), indent="  ")
+    if args.dump_tests_json or args.dump_emulators_json:
         sys.exit()
 
     if args.get_startuptime:
@@ -108,7 +124,7 @@ if __name__ == "__main__":
             'date': time.time(),
             'tests': {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()},
         }
-        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_").lower()), "wt"))
+        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_").lower()), "wt"), indent="  ")
 
     f = open("results.html", "wt")
     f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAIL { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
