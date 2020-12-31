@@ -5,6 +5,7 @@ from util import *
 
 PASS = "PASS"
 FAIL = "FAIL"
+INFO = "INFO"
 
 class Test:
     def __init__(self, name, *, runtime, rom=None, result=None, gbc=False, description=None, url=None, tags=None):
@@ -36,6 +37,11 @@ class Test:
         if self.fail_result is not None and compareImage(screenshot, self.fail_result):
             return FAIL
         return None
+
+    def getDefaultResult(self):
+        if self.pass_result is not None:
+            return FAIL
+        return INFO
 
     def __repr__(self):
         return self.name

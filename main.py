@@ -100,7 +100,7 @@ if __name__ == "__main__":
         results[emulator] = {}
         for test in tests:
             results[emulator][test] = emulator.run(test)
-    emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result == "PASS"]), reverse=True)
+    emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
     
     for emulator in emulators:
         data = {
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAIL { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")
     f.write("<tr><th>-</th>\n")
     for emulator in emulators:
-        passed = len([result for result in results[emulator].values() if result.result == "PASS"])
+        passed = len([result for result in results[emulator].values() if result.result != "FAIL"])
         f.write("  <th>%s (%d/%d)</th>\n" % (emulator, passed, len(results[emulator])))
     f.write("</tr>\n");
     for test in tests:

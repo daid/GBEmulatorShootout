@@ -55,7 +55,7 @@ class Emulator:
             assert p.poll() is None, "Process crashed? (exit: %d)" % (p.returncode)
         p.terminate()
         if result is None:
-            result = "FAIL"
+            result = test.getDefaultResult()
         return TestResult(result=result, screenshot=screenshot, startuptime=process_create_time, runtime=time.monotonic()-start_time)
 
     def getRunTimeFor(self, test):
