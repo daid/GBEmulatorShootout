@@ -1,12 +1,42 @@
 {
-  "Beaten Dying Moon": {},
-  "mGBA": {},
-  "KiGB": {},
-  "SameBoy": {},
-  "bgb": {},
-  "VisualBoyAdvance": {},
-  "VisualBoyAdvance-M": {},
-  "No$gmb": {},
-  "GambatteSpeedrun": {},
-  "Emulicious": {}
+  "Beaten Dying Moon": {
+    "file": "beaten_dying_moon.json",
+    "url": "https://mattcurrie.com/bdm-demo/"
+  },
+  "mGBA": {
+    "file": "mgba.json",
+    "url": "https://mgba.io/"
+  },
+  "KiGB": {
+    "file": "kigb.json",
+    "url": "http://kigb.emuunlim.com/"
+  },
+  "SameBoy": {
+    "file": "sameboy.json",
+    "url": "https://sameboy.github.io/"
+  },
+  "bgb": {
+    "file": "bgb.json",
+    "url": "https://bgb.bircd.org/"
+  },
+  "VisualBoyAdvance": {
+    "file": "visualboyadvance.json",
+    "url": "https://sourceforge.net/projects/"
+  },
+  "VisualBoyAdvance-M": {
+    "file": "visualboyadvance-m.json",
+    "url": "https://vba-m.com/"
+  },
+  "No$gmb": {
+    "file": "no$gmb.json",
+    "url": "https://problemkaputt.de/gmb.htm"
+  },
+  "GambatteSpeedrun": {
+    "file": "gambattespeedrun.json",
+    "url": "https://github.com/pokemon-speedrunning/gambatte-speedrun"
+  },
+  "Emulicious": {
+    "file": "emulicious.json",
+    "url": "https://emulicious.net/"
+  }
 }
