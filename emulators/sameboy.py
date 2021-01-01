@@ -6,7 +6,7 @@ import shutil
 
 class SameBoy(Emulator):
     def __init__(self):
-        super().__init__("SameBoy", startup_time=4.5)
+        super().__init__("SameBoy", "https://sameboy.github.io/", startup_time=4.5)
     
     def setup(self):
         downloadGithubRelease("LIJI32/SameBoy", "downloads/sameboy.zip")

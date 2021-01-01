@@ -5,7 +5,7 @@ import shutil
 
 class Emulicious(Emulator):
     def __init__(self):
-        super().__init__("Emulicious", startup_time=1.0)
+        super().__init__("Emulicious", "https://emulicious.net/", startup_time=1.0)
     
     def setup(self):
         download("https://emulicious.net/Emulicious.zip", "downloads/Emulicious.zip")

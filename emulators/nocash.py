@@ -6,7 +6,7 @@ import shutil
 
 class NoCash(Emulator):
     def __init__(self):
-        super().__init__("No$gmb", startup_time=1.6)
+        super().__init__("No$gmb", "https://problemkaputt.de/gmb.htm", startup_time=1.6)
         self.speed = 1.0
 
     def setup(self):

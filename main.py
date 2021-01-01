@@ -83,7 +83,10 @@ if __name__ == "__main__":
         sys.exit()
     if args.dump_emulators_json:
         json.dump({
-            str(emulator): {} for emulator in emulators
+            str(emulator): {
+                "file": emulator.getJsonFilename(),
+                "url": emulator.url,
+            } for emulator in emulators
         }, open("emulators.json", "wt"), indent="  ")
     if args.dump_tests_json:
         json.dump([
@@ -124,7 +127,7 @@ if __name__ == "__main__":
             'date': time.time(),
             'tests': {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()},
         }
-        json.dump(data, open("%s.json" % (str(emulator).replace(" ", "_").lower()), "wt"), indent="  ")
+        json.dump(data, open(emulator.getJsonFilename(), "wt"), indent="  ")
 
     f = open("results.html", "wt")
     f.write("<html><head><style>table { border-collapse: collapse } td, th { border: #333 solid 1px; text-align: center; line-height: 1.5} .PASS { background-color: #6e2 } .FAIL { background-color: #e44 } .UNKNOWN { background-color: #fd6 } td{font-size:80%} th{background:#eee} th:first-child{text-align:right; padding-right:4px} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif} </style></head><body><table>\n")

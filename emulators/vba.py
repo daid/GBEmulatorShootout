@@ -5,7 +5,7 @@ import shutil
 
 class VBA(Emulator):
     def __init__(self):
-        super().__init__("VisualBoyAdvance", startup_time=0.6)
+        super().__init__("VisualBoyAdvance", "https://sourceforge.net/projects/", startup_time=0.6)
     
     def setup(self):
         download("https://sourceforge.net/projects/vba/files/latest/download", "downloads/vba.zip")

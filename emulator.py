@@ -9,8 +9,9 @@ from util import *
 TestResult = namedtuple('TestResult', ['result', 'screenshot', 'startuptime', 'runtime'])
 
 class Emulator:
-    def __init__(self, name, *, startup_time=1.0):
+    def __init__(self, name, url, *, startup_time=1.0):
         self.name = name
+        self.url = url
         self.startup_time = startup_time
         self.title_check = lambda title: title.startswith(self.name)
         self.speed = 1.0
@@ -115,6 +116,9 @@ class Emulator:
         screenshot = fullscreenScreenshot()
         p.terminate()
         return startup_time, screenshot
+
+    def getJsonFilename(self):
+        return "%s.json" % (self.name.replace(" ", "_").lower())
 
     def __repr__(self):
         return self.name

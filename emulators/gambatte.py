@@ -6,7 +6,7 @@ import winreg
 
 class GambatteSpeedrun(Emulator):
     def __init__(self):
-        super().__init__("GambatteSpeedrun", startup_time=4.5)
+        super().__init__("GambatteSpeedrun", "https://github.com/pokemon-speedrunning/gambatte-speedrun", startup_time=4.5)
 
         self.title_check = lambda title: "Gambatte-Speedrun" in title
 

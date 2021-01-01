@@ -6,7 +6,7 @@ import shutil
 
 class KiGB(Emulator):
     def __init__(self):
-        super().__init__("KiGB", startup_time=1.6)
+        super().__init__("KiGB", "http://kigb.emuunlim.com/", startup_time=1.6)
         self.gbc = False
 
     def setup(self):
