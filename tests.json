@@ -1,0 +1,1147 @@
+[
+  {
+    "name": "acid/which.gb (DMG)",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "acid/which.gb (GBC)",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "acid/dmg-acid2.gb",
+    "description": "Rendering test for classic GameBoy.",
+    "url": "https://github.com/mattcurrie/dmg-acid2"
+  },
+  {
+    "name": "acid/cgb-acid2.gbc",
+    "description": "Rendering test for color GameBoy.",
+    "url": "https://github.com/mattcurrie/cgb-acid2"
+  },
+  {
+    "name": "acid/cgb-acid-hell.gbc",
+    "description": "Very specific rendering test of mid scanline writes, very hard to pass.",
+    "url": "https://github.com/mattcurrie/cgb-acid-hell"
+  },
+  {
+    "name": "blarg/cpu_instrs/01-special.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/02-interrupts.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/03-op_sp,hl.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/04-op_r,imm.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/05-op_rp.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/06-ld_r,r.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/07-jr,jp,call,ret,rst.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/08-misc_instrs.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/09-op_r,r.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/10-bit_ops.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cpu_instrs/11-op_a,(hl).gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/halt_bug.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/instr_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/interrupt_time.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing/01-read_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing/02-write_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing/03-modify_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing-2/01-read_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing-2/02-write_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/mem_timing-2/03-modify_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/1-lcd_sync.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/2-causes.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/3-non_causes.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/4-scanline_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/5-timing_bug.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/6-timing_no_bug.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/oam_bug/8-instr_effect.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/01-registers.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/02-len_ctr.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/03-trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/04-sweep.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/05-sweep_details.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/06-overflow_on_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/07-len_sweep_period_sync.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/08-len_ctr_during_power.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/09-wave_read_while_on.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/10-wave_trigger_while_on.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/11-regs_after_power.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/dmg_sound/12-wave_write_while_on.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/01-registers.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/02-len_ctr.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/03-trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/04-sweep.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/05-sweep_details.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/06-overflow_on_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/07-len_sweep_period_sync.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/08-len_ctr_during_power.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/09-wave_read_while_on.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/10-wave_trigger_while_on.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/11-regs_after_power.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "blarg/cgb_sound/12-wave.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "daid/ppu_scanline_bgp.gb",
+    "description": "Mid scanline BGP register changes. Requires accurate PPU timing, also, changing the BGP register causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line.",
+    "url": null
+  },
+  {
+    "name": "daid/stop_instr.gb (DMG)",
+    "description": "STOP instruction is usually not used, but it should blank out the screen on classic Gameboy. As the PPU is stopped. NOTE: Running this on real hardware might damage the hardware, as the screen should be turned off before STOP on DMG.",
+    "url": null
+  },
+  {
+    "name": "daid/stop_instr.gb (GBC)",
+    "description": "STOP instruction is usually not used, but it should make the screen go black on Color Gameboy. The PPU is still running, but it cannot access VRAM, so it reads all black",
+    "url": null
+  },
+  {
+    "name": "daid/stop_instr_gbc_mode3.gb",
+    "description": "STOP instruction is usually not used, but doing a STOP during mode 3 on Color Gameboy will keep the screen displaying the same data, as the PPU keeps running, and during mode3 it can access VRAM.",
+    "url": null
+  },
+  {
+    "name": "daid/speed_switch_timing_div.gbc",
+    "description": "Executing a STOP for a speed switch should reset the DIV register. Not doing this could cause problems with RNG for games, failing this will most certainly desync a TAS.",
+    "url": null
+  },
+  {
+    "name": "daid/speed_switch_timing_ly.gbc",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "daid/speed_switch_timing_stat.gbc",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "ax6/rtc3test-1.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "ax6/rtc3test-2.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "ax6/rtc3test-3.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/add_sp_e_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/bits/mem_oam.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/bits/reg_f.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/bits/unused_hwio-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/boot_div-dmgABCmgb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/boot_hwio-dmgABCmgb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/boot_regs-dmgABC.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/call_cc_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/call_cc_timing2.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/call_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/call_timing2.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/div_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/di_timing-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ei_sequence.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ei_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/halt_ime0_ei.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/halt_ime0_nointr_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/halt_ime1_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/halt_ime1_timing2-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/if_ie_registers.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/instr/daa.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/interrupts/ie_push.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/intr_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/jp_cc_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/jp_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ld_hl_sp_e_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma/basic.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma/reg_read.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma/sources-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma_start.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/oam_dma_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/pop_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/hblank_ly_scx_timing-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_1_2_timing-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_2_0_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_2_mode0_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_2_mode0_timing_sprites.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_2_mode3_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/intr_2_oam_ok_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/lcdon_timing-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/lcdon_write_timing-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/stat_irq_blocking.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/stat_lyc_onoff.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ppu/vblank_stat_intr-GS.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/push_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/rapid_di_ei.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/reti_intr_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/reti_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ret_cc_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/ret_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/rst_timing.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/serial/boot_sclk_align-dmgABCmgb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/div_write.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/rapid_toggle.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim00.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim00_div_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim01.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim01_div_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim10.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim10_div_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim11.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tim11_div_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tima_reload.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tima_write_reloading.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/acceptance/timer/tma_write_reloading.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/bits_bank1.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/bits_bank2.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/bits_mode.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/bits_ramg.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/multicart_rom_8Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/ram_256kb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/ram_64kb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_16Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_1Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_2Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_4Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_512kb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc1/rom_8Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/bits_ramg.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/bits_romb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/bits_unused.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/ram.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/rom_1Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/rom_2Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc2/rom_512kb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_16Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_1Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_2Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_32Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_4Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_512kb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_64Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/emulator-only/mbc5/rom_8Mb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/manual-only/sprite_priority.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/misc/boot_div-cgbABCDE.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "mooneye/misc/boot_regs-cgb.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_align.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_align_cpu.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_duty.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_duty_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_freq_change.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_nrx2_glitch.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_nrx2_speed_change.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_restart_nrx2_glitch.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_stop_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_stop_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_sweep.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_sweep_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_sweep_restart_2.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_volume.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_1/channel_1_volume_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_align.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_align_cpu.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_duty.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_duty_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_freq_change.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_nrx2_glitch.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_nrx2_speed_change.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_restart_nrx2_glitch.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_stop_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_stop_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_volume.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_2/channel_2_volume_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_and_glitch.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_first_sample.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_freq_change_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_restart_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_restart_during_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_restart_stop_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_shift_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_shift_skip_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_stop_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_stop_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_wave_ram_locked_write.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_3/channel_3_wave_ram_sync.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_align.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_delay.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_equivalent_frequencies.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_frequency_alignment.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_freq_change.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr15.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr_15_7.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr_7_15.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr_restart.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_lfsr_restart_fast.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/channel_4/channel_4_volume_div.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/div_trigger_volume_10.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/div_write_trigger.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/div_write_trigger_10.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/div_write_trigger_volume.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/apu/div_write_trigger_volume_10.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/dma/gbc_dma_cont.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/dma/gdma_addr_mask.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/dma/hdma_lcd_off.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/dma/hdma_mode0.gb",
+    "description": null,
+    "url": null
+  },
+  {
+    "name": "samesuite/ppu/blocking_bgpi_increase.gb",
+    "description": null,
+    "url": null
+  }
+]
