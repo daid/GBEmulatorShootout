@@ -11,7 +11,7 @@ all = [
     Test("blarg/cpu_instrs/07-jr,jp,call,ret,rst.gb", runtime=1.0),
     Test("blarg/cpu_instrs/08-misc_instrs.gb", runtime=1.0),
     Test("blarg/cpu_instrs/09-op_r,r.gb", runtime=7.0),
-    Test("blarg/cpu_instrs/10-bit_ops.gb", runtime=8.0),
+    Test("blarg/cpu_instrs/10-bit_ops.gb", runtime=13.0),
     Test("blarg/cpu_instrs/11-op_a,(hl).gb", runtime=13.0),
 
     Test("blarg/halt_bug.gb", runtime=2.0),
