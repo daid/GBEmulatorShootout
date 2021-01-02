@@ -1145,7 +1145,12 @@
     "url": null
   },
   {
-    "name": "hacktix/bully.gb",
+    "name": "hacktix/bully.gb (DMG)",
+    "description": "DMA bus conflict to execute code.",
+    "url": "https://github.com/Hacktix/BullyGB"
+  },
+  {
+    "name": "hacktix/bully.gb (GBC)",
     "description": "DMA bus conflict to execute code.",
     "url": "https://github.com/Hacktix/BullyGB"
   }
