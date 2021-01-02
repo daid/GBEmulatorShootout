@@ -1143,5 +1143,10 @@
     "name": "samesuite/ppu/blocking_bgpi_increase.gb",
     "description": null,
     "url": null
+  },
+  {
+    "name": "hacktix/bully.gb",
+    "description": "DMA bus conflict to execute code.",
+    "url": "https://github.com/Hacktix/BullyGB"
   }
 ]
