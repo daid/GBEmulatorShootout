@@ -17,11 +17,16 @@ def download(url, filename):
         r = requests.get(url, allow_redirects=True)
         open(filename, "wb").write(r.content)
 
-def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n):
+def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n, allow_prerelease=False):
     if not os.path.exists(filename):
-        r = requests.get("https://api.github.com/repos/%s/releases/latest" % (repo))
+        if allow_prerelease:
+            r = requests.get("https://api.github.com/repos/%s/releases" % (repo))
+            data = r.json()[0]
+        else:
+            r = requests.get("https://api.github.com/repos/%s/releases/latest" % (repo))
+            data = r.json()
         url = None
-        for asset in r.json()["assets"]:
+        for asset in data["assets"]:
             if filter(asset["name"]):
                 url = asset["browser_download_url"]
                 break
