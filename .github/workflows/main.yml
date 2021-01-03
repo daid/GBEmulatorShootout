@@ -45,21 +45,17 @@ jobs:
         run: |
           python main.py --emulator !mGBA --emulator !KiGB
           python main.py --dump-tests-json --dump-emulators-json
-      - name: Archive test result
-        uses: actions/upload-artifact@v2
-        with:
-          name: results
-          path: |
-            results.html
-            *.json
       - name: Deploy pages
         run: |
           git config --global user.name "github actions"
           git config --global user.email "github@actions"
           git clone --single-branch --branch gh-pages https://github.com/daid/GBEmulatorShootout.git pages
-          cp results.html pages/index.html
           cp *.json pages/
-          cd pages && git add *.json && git commit -a -m 'Update'
+          cd pages
+          python build.py
+          git add *.json
+          git add index.html
+          git commit -a -m 'Update'
       - name: Push page changes
         uses: ad-m/github-push-action@master
         with:
