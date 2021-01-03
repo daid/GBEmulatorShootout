@@ -23,6 +23,7 @@ f.write("""
     td {font-size:80%}
     th{background:#eee}
     th:first-child{text-align:right; padding-right:4px}
+    .screenshot { width: 160; height: 144; }
     body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}
     </style></head><body><table>\n""")
 f.write("<tr><th>-</th>\n")
@@ -38,6 +39,6 @@ for test in tests:
     f.write("<tr><th class='test'>%s</th>\n" % (name))
     for name, emulator in sorted(emulators.items(), key=lambda n: -n[1]['passed']):
         result = emulator['tests'][test['name']]
-        f.write("  <td class='%s'>%s<br><img src='data:image/png;base64,%s'></td>\n" % (result['result'], result['result'], result['screenshot']))
+        f.write("  <td class='%s'>%s<br><img class='screenshot' src='data:image/png;base64,%s'></td>\n" % (result['result'], result['result'], result['screenshot']))
     f.write("</tr>\n")
 f.write("</table></body></html>")
