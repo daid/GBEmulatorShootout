@@ -38,5 +38,9 @@
   "Emulicious": {
     "file": "emulicious.json",
     "url": "https://emulicious.net/"
+  },
+  "Higan": {
+    "file": "higan.json",
+    "url": "https://byuu.org/higan/"
   }
 }
