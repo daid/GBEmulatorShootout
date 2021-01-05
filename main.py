@@ -42,7 +42,7 @@ emulators = [
     NoCash(),
     GambatteSpeedrun(),
     Emulicious(),
-    Higan(),
+    # Higan(), # Crashes all over the place.
 ]
 tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all
 
