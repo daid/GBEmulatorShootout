@@ -9,7 +9,7 @@ clean:
 
 %.gbc: %.o
 	rgblink $< -o $@
-	rgbfix -C -v $@ -p 0xff
+	rgbfix -C -v $@ -p 0xff -t "TEST"
 
 .PRECIOUS: %.o
 %.o: %.asm common.inc hardware.inc

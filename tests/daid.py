@@ -2,8 +2,8 @@ from test import Test
 
 
 all = [
-    Test("daid/ppu_scanline_bgp.gb", runtime=0.5,
-        description="Mid scanline BGP register changes. Requires accurate PPU timing, also, changing the BGP register causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line."),
+    Test("daid/ppu_scanline_bgp.gb", runtime=0.5, result=["daid/ppu_scanline_bgp_0.png", "daid/ppu_scanline_bgp_1.png"],
+        description="Mid scanline BGP register changes. Requires accurate PPU timing. Changing the BGP register can causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line. This seems hardware dependend as not all DMGs do this."),
     Test("daid/stop_instr.gb (DMG)", runtime=0.5, rom="daid/stop_instr.gb", result="daid/stop_instr.dmg.png", gbc=False,
         description="STOP instruction is usually not used, but it should blank out the screen on classic Gameboy. As the PPU is stopped. NOTE: Running this on real hardware might damage the hardware, as the screen should be turned off before STOP on DMG."),
     Test("daid/stop_instr.gb (GBC)", runtime=0.5, rom="daid/stop_instr.gb", result="daid/stop_instr.gbc.png", gbc=True,
