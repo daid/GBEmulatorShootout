@@ -281,7 +281,7 @@
   },
   {
     "name": "daid/ppu_scanline_bgp.gb",
-    "description": "Mid scanline BGP register changes. Requires accurate PPU timing, also, changing the BGP register causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line.",
+    "description": "Mid scanline BGP register changes. Requires accurate PPU timing. Changing the BGP register can causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line. This seems hardware dependend as not all DMGs do this.",
     "url": null
   },
   {
