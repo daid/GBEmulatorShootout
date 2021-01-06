@@ -48,7 +48,7 @@ class Test:
         return None
 
     def getDefaultResult(self):
-        if self.pass_result is not None:
+        if self.pass_result:
             return FAIL
         return INFO
 
