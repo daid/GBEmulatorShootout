@@ -2,7 +2,9 @@ INCLUDE "hardware.inc"
 
 SECTION "entry", ROM0[$100]
   jp start
+IF !DEF(HEADER_DONE)
   ds $0150 - @, 0
+ENDC
 
 SECTION "lib", ROMX
 disableLCD:

@@ -14,4 +14,5 @@ all = [
         description="Executing a STOP for a speed switch should reset the DIV register. Not doing this could cause problems with RNG for games, failing this will most certainly desync a TAS."),
     Test("daid/speed_switch_timing_ly.gbc", runtime=0.5, gbc=True),
     Test("daid/speed_switch_timing_stat.gbc", runtime=0.5, gbc=True),
+    Test("daid/rom_and_ram.gbc", runtime=0.5),
 ]
