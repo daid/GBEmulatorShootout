@@ -66,6 +66,7 @@ start:
   ld   a, CART_SRAM_ENABLE
   ld   [$0000], a
   ld   a, [wInitialSRAM]
+  dec  a
   ld   [$A800], a
   testSRAM wPostSRAMEnable
   ld   a, [$A800]
@@ -89,8 +90,11 @@ start:
   ld   hl, wTestValue
   ld   a, [wWrappedSRAMResult]
   cp   [hl]
-  call z, SRAM2K
-  call nz, SRAMNot2K
+  jp   z, SRAM2KWrapped
+  ld   hl, wInitialSRAM
+  cp   [hl]
+  jp   z, SRAM2KNoWrap
+  jp   SRAMNot2K
 
 haltLoop:
   halt
@@ -135,14 +139,23 @@ noSRAM:
 noSRAMStr:
   db "No SRAM available", 0
 
-SRAM2K:
+SRAM2KWrapped:
   ld   hl, $9840
-  ld   de, SRAM2KStr
+  ld   de, SRAM2KWrappedStr
   call print
   jp haltLoop
 
-SRAM2KStr:
-  db "SRAM = 2K", 0
+SRAM2KWrappedStr:
+  db "SRAM = 2K, wrapping", 0
+
+SRAM2KNoWrap:
+  ld   hl, $9840
+  ld   de, SRAM2KNoWrapStr
+  call print
+  jp haltLoop
+
+SRAM2KNoWrapStr:
+  db "SRAM = 2K, no wrap", 0
 
 SRAMNot2K:
   ld   hl, $9840
@@ -151,4 +164,4 @@ SRAMNot2K:
   jp haltLoop
 
 SRAMNot2KStr:
-  db "SRAM bigger then 2K", 0
+  db "SRAM > 2K", 0
