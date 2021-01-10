@@ -316,8 +316,8 @@
   },
   {
     "name": "daid/rom_and_ram.gb",
-    "description": null,
-    "url": null
+    "description": "Test how the ROM+RAM header option of the emulator acts. No hardware is known to use this configuration. There is no right response for this, and roms should not use this option.",
+    "url": "https://github.com/daid/GBEmulatorShootout/blob/main/tests/daid/rom_and_ram.gb"
   },
   {
     "name": "ax6/rtc3test-1.gb",
