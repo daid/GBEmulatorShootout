@@ -315,6 +315,11 @@
     "url": null
   },
   {
+    "name": "daid/rom_and_ram.gb",
+    "description": null,
+    "url": null
+  },
+  {
     "name": "ax6/rtc3test-1.gb",
     "description": null,
     "url": null
@@ -1146,12 +1151,12 @@
   },
   {
     "name": "hacktix/bully.gb (DMG)",
-    "description": "DMA bus conflict to execute code.",
+    "description": "A collection of multiple test cases testing a variety of behaviors. (See Repository for Details)",
     "url": "https://github.com/Hacktix/BullyGB"
   },
   {
     "name": "hacktix/bully.gb (GBC)",
-    "description": "DMA bus conflict to execute code.",
+    "description": "A collection of multiple test cases testing a variety of behaviors. (See Repository for Details)",
     "url": "https://github.com/Hacktix/BullyGB"
   }
 ]
