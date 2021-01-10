@@ -38,7 +38,10 @@ for test in tests:
         name += "<span class=\"tooltiptext\">%s</span>" % (test['description'])
     f.write("<tr><th class='test'>%s</th>\n" % (name))
     for name, emulator in sorted(emulators.items(), key=lambda n: -n[1]['passed']):
-        result = emulator['tests'][test['name']]
-        f.write("  <td class='%s'>%s<br><img class='screenshot' src='data:image/png;base64,%s'></td>\n" % (result['result'], result['result'], result['screenshot']))
+        result = emulator['tests'].get(test['name'])
+        if result:
+            f.write("  <td class='%s'>%s<br><img class='screenshot' src='data:image/png;base64,%s'></td>\n" % (result['result'], result['result'], result['screenshot']))
+        else:
+            f.write("  <td>No result</td>\n")
     f.write("</tr>\n")
 f.write("</table></body></html>")
