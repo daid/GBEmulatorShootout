@@ -38,5 +38,9 @@
   "Emulicious": {
     "file": "emulicious.json",
     "url": "https://emulicious.net/"
+  },
+  "Goomba": {
+    "file": "goomba.json",
+    "url": "https://www.dwedit.org/gba/goombacolor.php"
   }
 }
