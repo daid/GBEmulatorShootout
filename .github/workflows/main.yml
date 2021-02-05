@@ -43,7 +43,7 @@ jobs:
           path: startuptime.html
       - name: Run tests
         run: |
-          python main.py --emulator !mGBA --emulator !KiGB
+          python main.py --emulator !mGBA --emulator !KiGB --emulator !Goomba
           python main.py --dump-tests-json --dump-emulators-json
       - name: Deploy pages
         run: |
