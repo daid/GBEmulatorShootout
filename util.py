@@ -14,7 +14,10 @@ def download(url, filename):
     if not os.path.exists(filename):
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         print("Downloading %s" % (url))
-        r = requests.get(url, allow_redirects=True)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36',
+        }
+        r = requests.get(url, allow_redirects=True, headers=headers)
         open(filename, "wb").write(r.content)
 
 def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n, allow_prerelease=False):

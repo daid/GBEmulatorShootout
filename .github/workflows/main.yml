@@ -35,7 +35,7 @@ jobs:
           python -m pip install pywin32
       - name: Check emulator startups
         run: |
-          python main.py --get-startuptime --emulator !mGBA --emulator !KiGB --emulator !No\$gmb
+          python main.py --get-startuptime --emulator !mGBA --emulator !KiGB
       - name: Archive startup time result
         uses: actions/upload-artifact@v2
         with:
