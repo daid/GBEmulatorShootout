@@ -28,6 +28,7 @@ from emulators.gambatte import GambatteSpeedrun
 from emulators.emulicious import Emulicious
 from emulators.bdm import BDM
 from emulators.higan import Higan
+from emulators.goomba import Goomba
 from util import *
 
 
@@ -43,6 +44,7 @@ emulators = [
     GambatteSpeedrun(),
     Emulicious(),
     # Higan(), # Crashes all over the place.
+    Goomba(),
 ]
 tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all
 
