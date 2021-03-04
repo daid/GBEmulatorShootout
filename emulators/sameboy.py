@@ -13,7 +13,7 @@ class SameBoy(Emulator):
         if extract("downloads/sameboy.zip", "emu/sameboy"):
             os.unlink("emu/sameboy/cgb_boot.bin")
             os.unlink("emu/sameboy/dmg_boot.bin")
-            download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/sameboy/cgb_boot.bin")
+            download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/sameboy/cgb_boot.bin")
             download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/sameboy/dmg_boot.bin")
         setDPIScaling("emu/sameboy/sameboy.exe")
         os.makedirs(os.path.join(os.environ["APPDATA"], "SameBoy"), exist_ok=True)

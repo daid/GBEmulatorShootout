@@ -15,7 +15,7 @@ class Emulicious(Emulator):
         download(url, "downloads/Emulicious.zip")
         extract("downloads/Emulicious.zip", "emu/emulicious")
         setDPIScaling("emu/emulicious/Emulicious.exe")
-        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/emulicious/cgb_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/emulicious/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/emulicious/dmg_boot.bin")
 
     def startProcess(self, rom, *, gbc=False):

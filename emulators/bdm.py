@@ -12,7 +12,7 @@ class BDM(Emulator):
         download("https://mattcurrie.com/bdm/downloads/bdms-win.zip", "downloads/bdm.zip")
         extract("downloads/bdm.zip", "emu/bdm")
         setDPIScaling("emu/bdm/bdms.exe")
-        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/bdm/cgb_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/bdm/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/bdm/dmg_boot.bin")
     
     def startProcess(self, rom, *, gbc=False):

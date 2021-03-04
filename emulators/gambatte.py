@@ -13,12 +13,12 @@ class GambatteSpeedrun(Emulator):
     def setup(self):
         downloadGithubRelease("pokemon-speedrunning/gambatte-speedrun", "downloads/gambatte-speedrun.zip", filter=lambda n: "theothers" in n and n.endswith(".zip"))
         extract("downloads/gambatte-speedrun.zip", "emu/gambatte-speedrun")
-        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_bios.bin", "emu/gambatte-speedrun/cgb_bios.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/gambatte-speedrun/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/gambatte-speedrun/dmg_boot.bin")
         setDPIScaling("emu/gambatte-speedrun/gambatte_speedrun.exe")
 
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
-        winreg.SetValueEx(key, "biosFilename", 0, 1, os.path.abspath("emu/gambatte-speedrun/cgb_bios.bin"))
+        winreg.SetValueEx(key, "biosFilename", 0, 1, os.path.abspath("emu/gambatte-speedrun/cgb_boot.bin"))
         winreg.SetValueEx(key, "biosFilenameDMG", 0, 1, os.path.abspath("emu/gambatte-speedrun/dmg_boot.bin"))
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\video")
         winreg.SetValueEx(key, "windowSize", 0, 1, "@Size(160 144)")
