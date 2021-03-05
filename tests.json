@@ -1158,5 +1158,10 @@
     "name": "hacktix/bully.gb (GBC)",
     "description": "A collection of multiple test cases testing a variety of behaviors. (See Repository for Details)",
     "url": "https://github.com/Hacktix/BullyGB"
+  },
+  {
+    "name": "hacktix/strikethrough.gb",
+    "description": "Abuse of OAM DMA transfers during PPU modes 2 and 3 causing interference with data reads from the PPU.",
+    "url": null
   }
 ]
