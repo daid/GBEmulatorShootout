@@ -19,6 +19,10 @@
     "file": "bgb.json",
     "url": "https://bgb.bircd.org/"
   },
+  "bgb-r159": {
+    "file": "bgb-r159.json",
+    "url": "https://bgb.bircd.org/"
+  },
   "VisualBoyAdvance": {
     "file": "visualboyadvance.json",
     "url": "https://sourceforge.net/projects/"
