@@ -19,7 +19,7 @@ import tests.ax6
 import tests.daid
 import tests.hacktix
 from emulators.kigb import KiGB
-from emulators.bgb import BGB
+from emulators.bgb import BGB, BGBRC
 from emulators.vba import VBA, VBAM
 from emulators.mgba import MGBA
 from emulators.sameboy import SameBoy
@@ -38,6 +38,7 @@ emulators = [
     KiGB(), # Crashes on github actions
     SameBoy(),
     BGB(),
+    BGBRC(),
     VBA(),
     VBAM(),
     NoCash(),
