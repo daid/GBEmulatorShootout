@@ -44,7 +44,7 @@ start:
   call initFont
   ld   hl, $9800
   ld   de, testStr
-  call print
+  call printStr
 
   ; Setup halt to wait for vblank
   di
@@ -103,7 +103,7 @@ haltLoop:
 noSRAMEnable:
   ld   hl, $9820
   ld   de, noSRAMEnableStr
-  call print
+  call printStr
   ret
 
 noSRAMEnableStr:
@@ -112,7 +112,7 @@ noSRAMEnableStr:
 SRAMEnable:
   ld   hl, $9820
   ld   de, SRAMEnableStr
-  call print
+  call printStr
 
   ld   hl, wTestValue
   ld   a, [wPreEnableWriteSRAM]
@@ -121,7 +121,7 @@ SRAMEnable:
 
   ld   hl, $9840
   ld   de, SRAMInitEnabledStr
-  call print
+  call printStr
   ret
 
 SRAMEnableStr:
@@ -133,7 +133,7 @@ SRAMInitEnabledStr:
 noSRAM:
   ld   hl, $9820
   ld   de, noSRAMStr
-  call print
+  call printStr
   jp haltLoop
 
 noSRAMStr:
@@ -142,7 +142,7 @@ noSRAMStr:
 SRAM2KWrapped:
   ld   hl, $9840
   ld   de, SRAM2KWrappedStr
-  call print
+  call printStr
   jp haltLoop
 
 SRAM2KWrappedStr:
@@ -151,7 +151,7 @@ SRAM2KWrappedStr:
 SRAM2KNoWrap:
   ld   hl, $9840
   ld   de, SRAM2KNoWrapStr
-  call print
+  call printStr
   jp haltLoop
 
 SRAM2KNoWrapStr:
@@ -160,7 +160,7 @@ SRAM2KNoWrapStr:
 SRAMNot2K:
   ld   hl, $9840
   ld   de, SRAMNot2KStr
-  call print
+  call printStr
   jp haltLoop
 
 SRAMNot2KStr:

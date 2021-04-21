@@ -21,6 +21,7 @@ class BGB(Emulator):
 class BGBRC(Emulator):
     def __init__(self):
         super().__init__("bgb-r159", "https://bgb.bircd.org/", startup_time=0.6)
+        self.title_check = lambda title: "bgb" in title
         self.speed = 10.0
 
     def setup(self):

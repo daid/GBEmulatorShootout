@@ -42,7 +42,7 @@ initFont:
 
 ; DE = string
 ; HL = vram
-print:
+printStr:
   ld  a, [de]
   inc de
   and a
@@ -54,7 +54,7 @@ print:
   jr  nz, .statWait
   ld  [hl], c
   inc hl
-  jr  print
+  jr  printStr
 
 printHex:
   ld   c, a
