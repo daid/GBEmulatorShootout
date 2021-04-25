@@ -18,6 +18,7 @@ import tests.samesuite
 import tests.ax6
 import tests.daid
 import tests.hacktix
+import tests.cpp
 from emulators.kigb import KiGB
 from emulators.bgb import BGB, BGBRC
 from emulators.vba import VBA, VBAM
@@ -47,7 +48,7 @@ emulators = [
     # Higan(), # Crashes all over the place.
     Goomba(),
 ]
-tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all
+tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all + tests.cpp.all
 
 def checkFilter(input, filter_data):
     if filter_data is None:
