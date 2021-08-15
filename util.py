@@ -35,17 +35,23 @@ def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n, allow_
                 break
         download(url, filename)
 
+def _getz7():
+    if os.path.exists("c:/Program Files/7-Zip/7z.exe"):
+        return "c:/Program Files/7-Zip/7z.exe"
+    return "7z"
+
 def extract(filename, path):
     if os.path.exists(path):
         return False
     if filename.endswith(".zip"):
         zipfile.ZipFile(filename).extractall(path)
+    elif filename.endswith(".7z") or filename.endswith(".tar.gz"):
+        os.makedirs(path, exist_ok=True)
+        subprocess.run([_getz7(), "x", os.path.abspath(filename)], cwd=path)
+        subprocess.run([_getz7(), "x", os.path.basename(filename)[:-3]], cwd=path)
     elif filename.endswith(".7z"):
         os.makedirs(path, exist_ok=True)
-        if os.path.exists("c:/Program Files/7-Zip/7z.exe"):
-            subprocess.run(["c:/Program Files/7-Zip/7z.exe", "x", os.path.abspath(filename)], cwd=path)
-        else:
-            subprocess.run(["7z", "x", os.path.abspath(filename)], cwd=path)        
+        subprocess.run([_getz7(), "x", os.path.abspath(filename)], cwd=path)        
     return True
 
 def findWindow(title_check):

@@ -30,6 +30,7 @@ from emulators.emulicious import Emulicious
 from emulators.bdm import BDM
 from emulators.higan import Higan
 from emulators.goomba import Goomba
+from emulators.binjgb import Binjgb
 from util import *
 
 
@@ -46,6 +47,7 @@ emulators = [
     Emulicious(),
     # Higan(), # Crashes all over the place.
     Goomba(),
+    Binjgb(),
 ]
 tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all + tests.cpp.all
 
