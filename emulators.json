@@ -42,5 +42,9 @@
   "Goomba": {
     "file": "goomba.json",
     "url": "https://www.dwedit.org/gba/goombacolor.php"
+  },
+  "binjgb": {
+    "file": "binjgb.json",
+    "url": "https://github.com/binji/binjgb/releases"
   }
 }
