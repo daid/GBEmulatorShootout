@@ -16,7 +16,7 @@ class Binjgb(Emulator):
 
     def startProcess(self, rom, *, gbc=False):
         if not gbc:
-            subprocess.Popen(["emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe", "--force-dmg", os.path.abspath(rom)], cwd="emu/binjgb")
+            return subprocess.Popen(["emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe", "--force-dmg", os.path.abspath(rom)], cwd="emu/binjgb")
         return subprocess.Popen(["emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe", os.path.abspath(rom)], cwd="emu/binjgb")
 
     def getScreenshot(self):
