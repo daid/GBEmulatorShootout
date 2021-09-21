@@ -12,12 +12,13 @@ class Binjgb(Emulator):
     def setup(self):
         downloadGithubRelease("binji/binjgb", "downloads/binjgb.tar.gz")
         extract("downloads/binjgb.tar.gz", "emu/binjgb")
-        setDPIScaling("emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe")
+        self.__path = [f for f in os.listdir("emu/binjgb") if not f.endswith(".tar")][0]
+        setDPIScaling("emu/binjgb/%s/bin/binjgb.exe" % (self.__path))
 
     def startProcess(self, rom, *, gbc=False):
         if not gbc:
-            return subprocess.Popen(["emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe", "--force-dmg", os.path.abspath(rom)], cwd="emu/binjgb")
-        return subprocess.Popen(["emu/binjgb/binjgb-v0.1.10/bin/binjgb.exe", os.path.abspath(rom)], cwd="emu/binjgb")
+            return subprocess.Popen(["emu/binjgb/%s/bin/binjgb.exe" % (self.__path), "--force-dmg", os.path.abspath(rom)], cwd="emu/binjgb")
+        return subprocess.Popen(["emu/binjgb/%s/bin/binjgb.exe" % (self.__path), os.path.abspath(rom)], cwd="emu/binjgb")
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
