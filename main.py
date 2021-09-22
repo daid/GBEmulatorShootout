@@ -126,14 +126,14 @@ if __name__ == "__main__":
     results = {}
     for emulator in emulators:
         results[emulator] = {}
-        try:
-            emulator.setup()
-            for test in tests:
+        emulator.setup()
+        for test in tests:
+            try:
                 results[emulator][test] = emulator.run(test)
-        except:
-            import traceback
-            print("Emulator %s failed to run properly" % (emulator))
-            traceback.print_exc()
+            except:
+                import traceback
+                print("Emulator %s failed to run properly" % (emulator))
+                traceback.print_exc()
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
     
     for emulator in emulators:
