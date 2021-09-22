@@ -1,13 +1,16 @@
 import json
+import os
 
 emulators = json.load(open("emulators.json", "rt"))
 tests = json.load(open("tests.json", "rt"))
 
 for name in emulators:
-    if os.path.exists(open(emulators[name]['file'], "rt")):
+    if os.path.exists(emulators[name]['file']):
         data = json.load(open(emulators[name]['file'], "rt"))
         emulators[name].update(data)
         emulators[name]['passed'] = len([result for result in data['tests'].values() if result['result'] != "FAIL"])
+    else:
+        emulators[name].update({'passed': 0, 'tests': {}})
 
 f = open("index.html", "wt")
 f.write("""
