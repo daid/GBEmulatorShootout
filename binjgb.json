@@ -1,11 +1,11 @@
 {
   "emulator": "binjgb",
-  "date": 1632334192.4591231,
+  "date": 1632334231.3286245,
   "tests": {
     "daid/stop_instr.gb (DMG)": {
       "result": "PASS",
-      "startuptime": 0.04700000000048021,
-      "runtime": 0.14099999999962165,
+      "startuptime": 0.04699999999957072,
+      "runtime": 0.14000000000032742,
       "screenshot": "iVBORw0KGgoAAAANSUhEUgAAAKAAAACQCAIAAAAA1/fXAAABYklEQVR4nO3RAQkAIBDAQLV/5zeFCOMuwWB7ZhZd53cAbxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3CcwXEGxxkcZ3DcBfY1BB2bo+a1AAAAAElFTkSuQmCC"
     }
   }
