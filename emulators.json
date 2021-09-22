@@ -46,5 +46,9 @@
   "binjgb": {
     "file": "binjgb.json",
     "url": "https://github.com/binji/binjgb/releases"
+  },
+  "PyBoy": {
+    "file": "pyboy.json",
+    "url": "https://github.com/Baekalfen/PyBoy"
   }
 }
