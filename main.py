@@ -125,10 +125,15 @@ if __name__ == "__main__":
 
     results = {}
     for emulator in emulators:
-        emulator.setup()
         results[emulator] = {}
-        for test in tests:
-            results[emulator][test] = emulator.run(test)
+        try:
+            emulator.setup()
+            for test in tests:
+                results[emulator][test] = emulator.run(test)
+        except:
+            import traceback
+            print("Emulator %s failed to run properly" % (emulator))
+            traceback.print_exc()
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
     
     for emulator in emulators:
@@ -137,4 +142,5 @@ if __name__ == "__main__":
             'date': time.time(),
             'tests': {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()},
         }
-        json.dump(data, open(emulator.getJsonFilename(), "wt"), indent="  ")
+        if results[emulator]:
+            json.dump(data, open(emulator.getJsonFilename(), "wt"), indent="  ")
