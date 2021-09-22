@@ -1,6 +1,7 @@
 from util import *
 from emulator import Emulator
 import shutil
+import os
 import sys
 
 
@@ -10,13 +11,12 @@ class PyBoy(Emulator):
         self.title_check = lambda title: "CPU/frame" in title
 
     def setup(self):
-        downloadGithubRelease("Baekalfen/PyBoy", "downloads/pyboy.zip")
-        extract("downloads/pyboy.zip", "emu/pyboy")
-        self.__path = [f for f in os.listdir("emu/pyboy")][0]
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/pyboy/cgb_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/pyboy/dmg_boot.bin")
         setDPIScaling(sys.executable)
         
-        subprocess.Popen([sys.executable, "-m", "pip", "install", "pysdl2-dll"], cwd="emu/pyboy/%s" % (self.__path)).wait()
-        subprocess.Popen([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], cwd="emu/pyboy/%s" % (self.__path)).wait()
+        subprocess.Popen([sys.executable, "-m", "pip", "install", "pysdl2-dll"], cwd="emu/pyboy").wait()
+        subprocess.Popen([sys.executable, "-m", "pip", "install", "pyboy"], cwd="emu/pyboy").wait()
     
     def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen([sys.executable, "-m", "pyboy", "-s", "1", os.path.abspath(rom)], cwd="emu/pyboy/%s" % (self.__path))
+        return subprocess.Popen([sys.executable, "-m", "pyboy", "-b", "dmg_boot.bin", "-s", "1", os.path.abspath(rom)], cwd="emu/pyboy")

@@ -11,7 +11,7 @@ class Test:
     def __init__(self, name, *, runtime, rom=None, result=None, gbc=False, description=None, url=None, tags=None):
         rom = rom or name
         self.name = name
-        self.rom = os.path.join("tests", rom)
+        self.rom = os.path.join("testroms", rom)
         self.gbc = gbc
         self.runtime = runtime
         self.description = description
@@ -22,9 +22,9 @@ class Test:
         if result is None:
             result = os.path.splitext(rom)[0] + ".png"
         if isinstance(result, list):
-            result = [os.path.join("tests", r) for r in result]
+            result = [os.path.join("testroms", r) for r in result]
         else:
-            result = [os.path.join("tests", result)]
+            result = [os.path.join("testroms", result)]
         
         def tryOpenImage(filename):
             if filename is not None and os.path.exists(filename):

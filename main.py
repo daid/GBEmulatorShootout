@@ -11,14 +11,14 @@ import sys
 import argparse
 import json
 
-import tests.blarg
-import tests.mooneye
-import tests.acid
-import tests.samesuite
-import tests.ax6
-import tests.daid
-import tests.hacktix
-import tests.cpp
+import testroms.blarg
+import testroms.mooneye
+import testroms.acid
+import testroms.samesuite
+import testroms.ax6
+import testroms.daid
+import testroms.hacktix
+import testroms.cpp
 from emulators.kigb import KiGB
 from emulators.bgb import BGB
 from emulators.vba import VBA, VBAM
@@ -51,7 +51,7 @@ emulators = [
     Binjgb(),
     PyBoy(),
 ]
-tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all + tests.cpp.all
+tests = testroms.acid.all + testroms.blarg.all + testroms.daid.all + testroms.ax6.all + testroms.mooneye.all + testroms.samesuite.all + testroms.hacktix.all + testroms.cpp.all
 
 def checkFilter(input, filter_data):
     if filter_data is None:
