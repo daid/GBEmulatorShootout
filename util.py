@@ -28,7 +28,7 @@ def downloadGithubRelease(repo, filename, *, filter=lambda n: "win" in n, allow_
         else:
             r = requests.get("https://api.github.com/repos/%s/releases/latest" % (repo))
             data = r.json()
-        url = None
+        url = data["zipball_url"]
         for asset in data["assets"]:
             if filter(asset["name"]):
                 url = asset["browser_download_url"]

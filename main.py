@@ -31,6 +31,7 @@ from emulators.bdm import BDM
 from emulators.higan import Higan
 from emulators.goomba import Goomba
 from emulators.binjgb import Binjgb
+from emulators.pyboy import PyBoy
 from util import *
 
 
@@ -48,6 +49,7 @@ emulators = [
     # Higan(), # Crashes all over the place.
     Goomba(),
     Binjgb(),
+    PyBoy(),
 ]
 tests = tests.acid.all + tests.blarg.all + tests.daid.all + tests.ax6.all + tests.mooneye.all + tests.samesuite.all + tests.hacktix.all + tests.cpp.all
 
