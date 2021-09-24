@@ -76,6 +76,6 @@ all = [
     Test("samesuite/dma/hdma_lcd_off.gb", runtime=1.5, model=CGB),
     Test("samesuite/dma/hdma_mode0.gb", runtime=1.5, model=CGB),
     Test("samesuite/ppu/blocking_bgpi_increase.gb", runtime=1.5, model=CGB),
-    # Test("samesuite/sgb/command_mlt_req.gb", runtime=1.5, model=CGB),
-    # Test("samesuite/sgb/command_mlt_req_1_incrementing.gb", runtime=1.5, model=CGB),
+    Test("samesuite/sgb/command_mlt_req.gb", runtime=1.5, model=SGB),
+    Test("samesuite/sgb/command_mlt_req_1_incrementing.gb", runtime=1.5, model=SGB),
 ]
