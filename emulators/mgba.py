@@ -7,7 +7,7 @@ import os
 
 class MGBA(Emulator):
     def __init__(self):
-        super().__init__("mGBA", "https://mgba.io/", startup_time=2.5)
+        super().__init__("mGBA", "https://mgba.io/", startup_time=2.5, features=(PCM,))
         self.speed = 1.0
 
     def setup(self):

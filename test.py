@@ -7,9 +7,13 @@ PASS = "PASS"
 FAIL = "FAIL"
 INFO = "INFO"
 
+# Models
 DMG = "DMG"
 CGB = "CGB"
 SGB = "SGB"
+
+# Features
+PCM = "PCM"
 
 class Test:
     def __init__(self, name, *, runtime, rom=None, result=None, model=DMG, required_features=None, description=None, url=None, tags=None):
