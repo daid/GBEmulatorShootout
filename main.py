@@ -121,7 +121,7 @@ if __name__ == "__main__":
             if dmg_start_time is not None:
                 print("Startup time: %s = %g (dmg)" % (emulator, dmg_start_time))
                 f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(dmg_screenshot)))
-            if cgb_start_time is not None:
+            if gbc_start_time is not None:
                 print("Startup time: %s = %g (gbc)" % (emulator, gbc_start_time))
                 f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(gbc_screenshot)))
             if sgb_start_time is not None:
