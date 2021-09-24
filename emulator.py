@@ -90,7 +90,7 @@ class Emulator:
     def measureStartupTime(self, *, model):
         p = self.startProcess("startup_time_test.gb", model=model, required_features=set())
         if p is None:
-            return None
+            return None, None
         reference = PIL.Image.open("startup_time_test.png")
         start_pre_window_time = time.monotonic()
         while findWindow(self.title_check) is None:
