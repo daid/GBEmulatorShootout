@@ -135,14 +135,20 @@ if __name__ == "__main__":
         results[emulator] = {}
         emulator.setup()
         for test in tests:
-            try:
-                result = emulator.run(test)
-                if result is not None:
-                    results[emulator][test] = result
-            except:
-                import traceback
-                print("Emulator %s failed to run properly" % (emulator))
-                traceback.print_exc()
+            skip = False
+            for feature in test.required_features:
+                if feature not in emulator.features:
+                    skip = True
+                    print("Skipping %s on %s because of missing feature %s" % (test, emulator, feature))
+            if not skip:
+                try:
+                    result = emulator.run(test)
+                    if result is not None:
+                        results[emulator][test] = result
+                except:
+                    import traceback
+                    print("Emulator %s failed to run properly" % (emulator))
+                    traceback.print_exc()
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
     
     for emulator in emulators:

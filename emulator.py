@@ -9,12 +9,13 @@ from util import *
 TestResult = namedtuple('TestResult', ['result', 'screenshot', 'startuptime', 'runtime'])
 
 class Emulator:
-    def __init__(self, name, url, *, startup_time=1.0):
+    def __init__(self, name, url, *, startup_time=1.0, features=None):
         self.name = name
         self.url = url
         self.startup_time = startup_time
         self.title_check = lambda title: title.startswith(self.name)
         self.speed = 1.0
+        self.features = features or set()
     
     def setup(self):
         raise NotImplementedError()
