@@ -1,4 +1,4 @@
-from test import Test
+from test import *
 
 
 all = [
@@ -16,7 +16,7 @@ all = [
 
     Test("blarg/halt_bug.gb", runtime=2.0),
     Test("blarg/instr_timing.gb", runtime=1.0),
-    Test("blarg/interrupt_time.gb", runtime=1.5, gbc=True),
+    Test("blarg/interrupt_time.gb", runtime=1.5, model=CGB), # Note, on DMG there is an write to VRAM while it is blocked
 
     Test("blarg/mem_timing/01-read_timing.gb", runtime=1.0),
     Test("blarg/mem_timing/02-write_timing.gb", runtime=1.0),
@@ -48,16 +48,16 @@ all = [
     Test("blarg/dmg_sound/11-regs_after_power.gb", runtime=1.0),
     Test("blarg/dmg_sound/12-wave_write_while_on.gb", runtime=5.0),
 
-    Test("blarg/cgb_sound/01-registers.gb", runtime=1.5, gbc=True),
-    Test("blarg/cgb_sound/02-len_ctr.gb", runtime=11.0, gbc=True),
-    Test("blarg/cgb_sound/03-trigger.gb", runtime=18.0, gbc=True),
-    Test("blarg/cgb_sound/04-sweep.gb", runtime=2.5, gbc=True),
-    Test("blarg/cgb_sound/05-sweep_details.gb", runtime=12.0, gbc=True),
-    Test("blarg/cgb_sound/06-overflow_on_trigger.gb", runtime=2.0, gbc=True),
-    Test("blarg/cgb_sound/07-len_sweep_period_sync.gb", runtime=1.5, gbc=True),
-    Test("blarg/cgb_sound/08-len_ctr_during_power.gb", runtime=3.5, gbc=True),
-    Test("blarg/cgb_sound/09-wave_read_while_on.gb", runtime=1.5, gbc=True),
-    Test("blarg/cgb_sound/10-wave_trigger_while_on.gb", runtime=5.0, gbc=True),
-    Test("blarg/cgb_sound/11-regs_after_power.gb", runtime=1.5, gbc=True),
-    Test("blarg/cgb_sound/12-wave.gb", runtime=1.5, gbc=True),
+    Test("blarg/cgb_sound/01-registers.gb", runtime=1.5, model=CGB),
+    Test("blarg/cgb_sound/02-len_ctr.gb", runtime=11.0, model=CGB),
+    Test("blarg/cgb_sound/03-trigger.gb", runtime=18.0, model=CGB),
+    Test("blarg/cgb_sound/04-sweep.gb", runtime=2.5, model=CGB),
+    Test("blarg/cgb_sound/05-sweep_details.gb", runtime=12.0, model=CGB),
+    Test("blarg/cgb_sound/06-overflow_on_trigger.gb", runtime=2.0, model=CGB),
+    Test("blarg/cgb_sound/07-len_sweep_period_sync.gb", runtime=1.5, model=CGB),
+    Test("blarg/cgb_sound/08-len_ctr_during_power.gb", runtime=3.5, model=CGB),
+    Test("blarg/cgb_sound/09-wave_read_while_on.gb", runtime=1.5, model=CGB),
+    Test("blarg/cgb_sound/10-wave_trigger_while_on.gb", runtime=5.0, model=CGB),
+    Test("blarg/cgb_sound/11-regs_after_power.gb", runtime=1.5, model=CGB),
+    Test("blarg/cgb_sound/12-wave.gb", runtime=1.5, model=CGB),
 ]

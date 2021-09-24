@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 from PIL import Image
 import os
 import shutil
@@ -15,8 +16,8 @@ class Binjgb(Emulator):
         self.__path = [f for f in os.listdir("emu/binjgb") if not f.endswith(".tar")][0]
         setDPIScaling("emu/binjgb/%s/bin/binjgb.exe" % (self.__path))
 
-    def startProcess(self, rom, *, gbc=False):
-        if not gbc:
+    def startProcess(self, rom, *, model, required_features):
+        if model == DMG:
             return subprocess.Popen(["emu/binjgb/%s/bin/binjgb.exe" % (self.__path), "--force-dmg", os.path.abspath(rom)], cwd="emu/binjgb")
         return subprocess.Popen(["emu/binjgb/%s/bin/binjgb.exe" % (self.__path), os.path.abspath(rom)], cwd="emu/binjgb")
 

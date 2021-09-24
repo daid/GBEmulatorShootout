@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 
 
@@ -14,6 +15,9 @@ class BGB(Emulator):
         setDPIScaling("emu/bgb/bgb.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "bgb.ini"), "emu/bgb/bgb.ini")
     
-    def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen(["emu/bgb/bgb.exe", "-set", "SystemMode=%d" % (1 if gbc else 0), "-set", "Speed=%g" % (self.speed), "-set", "LoadRomWarnings=0", "-set", "Width=160", "-set", "detectgba=1", "-set", "Height=144", "-set", "SoundOut=null", os.path.abspath(rom)], cwd="emu/bgb")
+    def startProcess(self, rom, *, model, required_features):
+        systemmode = {DMG: 0, CGB: 1, SGB: 2}.get(model)
+        if systemmode is None:
+            return None
+        return subprocess.Popen(["emu/bgb/bgb.exe", "-set", "SystemMode=%d" % (systemmode), "-set", "Speed=%g" % (self.speed), "-set", "LoadRomWarnings=0", "-set", "Width=160", "-set", "detectgba=1", "-set", "Height=144", "-set", "SoundOut=null", os.path.abspath(rom)], cwd="emu/bgb")
 

@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 import os
 import sys
@@ -18,5 +19,7 @@ class PyBoy(Emulator):
         subprocess.Popen([sys.executable, "-m", "pip", "install", "pysdl2-dll"], cwd="emu/pyboy").wait()
         subprocess.Popen([sys.executable, "-m", "pip", "install", "pyboy"], cwd="emu/pyboy").wait()
     
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
+        if model != DMG:
+            return None
         return subprocess.Popen([sys.executable, "-m", "pyboy", "-b", "dmg_boot.bin", "-s", "1", os.path.abspath(rom)], cwd="emu/pyboy")

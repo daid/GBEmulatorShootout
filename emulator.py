@@ -19,7 +19,7 @@ class Emulator:
     def setup(self):
         raise NotImplementedError()
 
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         raise NotImplementedError()
 
     def postWindowCreation(self):
@@ -35,7 +35,10 @@ class Emulator:
         if os.path.exists(sav_file):
             os.unlink(sav_file)
         
-        p = self.startProcess(test.rom, gbc=test.gbc)
+        p = self.startProcess(test.rom, model=test.model, required_features=test.required_features)
+        if p is None:
+            print("%s cannot run %s (incompattible model or feature requests)" % (self, test))
+            return None
         process_create_time = time.monotonic()
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
@@ -60,7 +63,9 @@ class Emulator:
         return TestResult(result=result, screenshot=screenshot, startuptime=process_create_time, runtime=time.monotonic()-start_time)
 
     def getRunTimeFor(self, test):
-        p = self.startProcess(test.rom, gbc=test.gbc)
+        p = self.startProcess(test.rom, model=test.model, required_features=test.required_features)
+        if p is None:
+            return None
         while findWindow(self.title_check) is None:
             time.sleep(0.01)
             assert p.poll() is None, "Process crashed?"
@@ -82,8 +87,10 @@ class Emulator:
         p.terminate()
         return last_change - start
 
-    def measureStartupTime(self, *, gbc=False):
-        p = self.startProcess("startup_time_test.gb", gbc=gbc)
+    def measureStartupTime(self, *, model):
+        p = self.startProcess("startup_time_test.gb", model=model, required_features=set())
+        if p is None:
+            return None
         reference = PIL.Image.open("startup_time_test.png")
         start_pre_window_time = time.monotonic()
         while findWindow(self.title_check) is None:

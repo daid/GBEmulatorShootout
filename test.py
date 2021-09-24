@@ -7,16 +7,21 @@ PASS = "PASS"
 FAIL = "FAIL"
 INFO = "INFO"
 
+DMG = "DMG"
+CGB = "CGB"
+SGB = "SGB"
+
 class Test:
-    def __init__(self, name, *, runtime, rom=None, result=None, gbc=False, description=None, url=None, tags=None):
+    def __init__(self, name, *, runtime, rom=None, result=None, model=DMG, required_features=None, description=None, url=None, tags=None):
         rom = rom or name
         self.name = name
         self.rom = os.path.join("testroms", rom)
-        self.gbc = gbc
+        self.model = model
         self.runtime = runtime
         self.description = description
         self.url = url
         self.tags = tags or set()
+        self.required_features = required_features or set()
 
         assert os.path.exists(self.rom)
         if result is None:

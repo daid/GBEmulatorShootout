@@ -18,7 +18,7 @@ class Higan(Emulator):
         setDPIScaling("emu/higan/byuu-nightly/byuu.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "higan-settings.bml"), "emu/higan/byuu-nightly/settings.bml")
     
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         target = "emu/higan/byuu-nightly/byuu-rom.gb"
         self.gbc = gbc
         if gbc:

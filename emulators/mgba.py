@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 import os
 
@@ -19,15 +20,21 @@ class MGBA(Emulator):
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "%s/qt.ini" % (self.path))
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "%s/config.ini" % (self.path))
     
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         #return subprocess.Popen(["%s/mGBA.exe" % (self.path), os.path.abspath(rom)], cwd=self.path)
         env = {"SDL_RENDER_DRIVER": "software"}
         for k, v in os.environ.items():
             env[k] = v
-        return subprocess.Popen(["%s/mgba-sdl.exe" % (self.path), "-C", "gb.model=%s" % ("CGB" if gbc else "DMG"), "-C", "cgb.model=%s" % ("CGB" if gbc else "DMG"), os.path.abspath(rom)], cwd=self.path, env=env)
+        model = {DMG: "DMG", CGB: "CGB", SGB: "SGB"}.get(model)
+        if model is None:
+            return None
+        return subprocess.Popen(["%s/mgba-sdl.exe" % (self.path), "-C", "gb.model=%s" % (model), "-C", "cgb.model=%s" % (model), "-C", "sgb.model=%s" % (model), os.path.abspath(rom)], cwd=self.path, env=env)
 
     def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
         if screenshot is None:
             return None
+        if screenshot.size[0] == 256: # SGB
+            screenshot.crop((48, screenshot.size[1] - 144 - 40, 160, 144)).save("tmp.png")
+            return screenshot.crop((48, screenshot.size[1] - 144 - 40, 160 + 48, screenshot.size[1] - 40))
         return screenshot.crop((0, screenshot.size[1] - 144, 160, screenshot.size[1]))

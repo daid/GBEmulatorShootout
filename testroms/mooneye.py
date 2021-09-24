@@ -1,4 +1,4 @@
-from test import Test
+from test import *
 
 
 all = [
@@ -113,10 +113,10 @@ all = [
 
     # Test("mooneye/misc/bits/unused_hwio-C.gb", runtime=1.5),
     # Test("mooneye/misc/boot_div-A.gb", runtime=1.5),
-    # Test("mooneye/misc/boot_div-cgb0.gb", runtime=1.5, gbc=True),
-    Test("mooneye/misc/boot_div-cgbABCDE.gb", runtime=1.5, gbc=True),
+    # Test("mooneye/misc/boot_div-cgb0.gb", runtime=1.5, model=CGB),
+    Test("mooneye/misc/boot_div-cgbABCDE.gb", runtime=1.5, model=CGB),
     # Test("mooneye/misc/boot_hwio-C.gb", runtime=1.5),
     # Test("mooneye/misc/boot_regs-A.gb", runtime=1.5),
-    Test("mooneye/misc/boot_regs-cgb.gb", runtime=1.5, gbc=True),
+    Test("mooneye/misc/boot_regs-cgb.gb", runtime=1.5, model=CGB),
     # Test("mooneye/misc/ppu/vblank_stat_intr-C.gb", runtime=1.5),
 ]

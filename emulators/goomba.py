@@ -25,7 +25,7 @@ class Goomba(Emulator):
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.qt.ini"), "%s/qt.ini" % (self.path))
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "mgba.config.ini"), "%s/config.ini" % (self.path))
 
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         gba_rom = "emu/goomba/goomba.gba.rom.gba"
         try:
             f = open(gba_rom, "wb")

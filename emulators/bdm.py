@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 
 
@@ -14,6 +15,10 @@ class BDM(Emulator):
         setDPIScaling("emu/bdm/bdms.exe")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/bdm/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/bdm/dmg_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/sgb_boot.bin", "emu/bdm/sgb_boot.bin")
     
-    def startProcess(self, rom, *, gbc=False):
-        return subprocess.Popen(["emu/bdm/bdms.exe", "-scale", "1", "-turbo", "-cgb" if gbc else "-dmg", os.path.abspath(rom)], cwd="emu/bdm")
+    def startProcess(self, rom, *, model, required_features):
+        model = {DMG: "dmgC", CGB: "cgbE", SGB: "sgb"}.get(model)
+        if model is None:
+            return None
+        return subprocess.Popen(["emu/bdm/bdms.exe", "-scale", "1", "-turbo", "-dev", model, os.path.abspath(rom)], cwd="emu/bdm")

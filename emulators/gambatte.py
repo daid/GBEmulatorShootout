@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 import winreg
 
@@ -15,20 +16,23 @@ class GambatteSpeedrun(Emulator):
         extract("downloads/gambatte-speedrun.zip", "emu/gambatte-speedrun")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/gambatte-speedrun/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/gambatte-speedrun/dmg_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/sgb2_boot.bin", "emu/gambatte-speedrun/sgb2_boot.bin")
         setDPIScaling("emu/gambatte-speedrun/gambatte_speedrun.exe")
 
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
         winreg.SetValueEx(key, "biosFilename", 0, 1, os.path.abspath("emu/gambatte-speedrun/cgb_boot.bin"))
         winreg.SetValueEx(key, "biosFilenameDMG", 0, 1, os.path.abspath("emu/gambatte-speedrun/dmg_boot.bin"))
+        winreg.SetValueEx(key, "biosFilenameSGB", 0, 1, os.path.abspath("emu/gambatte-speedrun/sgb2_boot.bin"))
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\video")
         winreg.SetValueEx(key, "windowSize", 0, 1, "@Size(160 144)")
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt\sound")
         winreg.SetValueEx(key, "engineIndex", 0, 1, "Null")
 
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
-        winreg.SetValueEx(key, "platform", 0, winreg.REG_DWORD, 1 if gbc else 0)
-        self.startup_time = 4.0 if gbc else 6.0
+        platform = {DMG: 0, CGB: 1, SGB: 4}.get(model)
+        winreg.SetValueEx(key, "platform", 0, winreg.REG_DWORD, platform)
+        self.startup_time = 4.0 if model == CGB else 6.0
         return subprocess.Popen(["emu/gambatte-speedrun/gambatte_speedrun.exe", os.path.abspath(rom)], cwd="emu/gambatte-speedrun")
 
     def getScreenshot(self):

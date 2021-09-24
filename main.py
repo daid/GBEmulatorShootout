@@ -33,6 +33,7 @@ from emulators.goomba import Goomba
 from emulators.binjgb import Binjgb
 from emulators.pyboy import PyBoy
 from util import *
+from test import *
 
 
 emulators = [
@@ -114,12 +115,13 @@ if __name__ == "__main__":
         f.write("<html><body>\n")
         for emulator in emulators:
             emulator.setup()
-            dmg_start_time, dmg_screenshot = emulator.measureStartupTime(gbc=False)
-            gbc_start_time, gbc_screenshot = emulator.measureStartupTime(gbc=True)
-            if dmg_start_time is not None and gbc_start_time is not None:
-                print("Startup time: %s = %g (dmg) %g (gbc)" % (emulator, dmg_start_time, gbc_start_time))
+            dmg_start_time, dmg_screenshot = emulator.measureStartupTime(model=DMG)
+            gbc_start_time, gbc_screenshot = emulator.measureStartupTime(model=CGB)
+            sgb_start_time, sgb_screenshot = emulator.measureStartupTime(model=SGB)
+            print("Startup time: %s = %g (dmg) %g (gbc) %g (sgb)" % (emulator, dmg_start_time, gbc_start_time, sgb_start_time))
             f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(dmg_screenshot)))
             f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(gbc_screenshot)))
+            f.write("%s (sgb)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(sgb_screenshot)))
         f.write("</body></html>")
         sys.exit()
 
@@ -129,7 +131,9 @@ if __name__ == "__main__":
         emulator.setup()
         for test in tests:
             try:
-                results[emulator][test] = emulator.run(test)
+                result = emulator.run(test)
+                if result is not None:
+                    results[emulator][test] = result
             except:
                 import traceback
                 print("Emulator %s failed to run properly" % (emulator))

@@ -1,5 +1,6 @@
 from util import *
 from emulator import Emulator
+from test import *
 import shutil
 
 
@@ -12,10 +13,11 @@ class VBA(Emulator):
         extract("downloads/vba.zip", "emu/vba")
         setDPIScaling("emu/vba/VisualBoyAdvance.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "vba.ini"), "emu/vba/vba.ini")
+        download("https://gbdev.gg8.se/files/roms/bootroms/sgb_boot.bin", "emu/vba/sgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/vba/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba/dmg_boot.bin")
 
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         return subprocess.Popen(["emu/vba/VisualBoyAdvance.exe", os.path.abspath(rom)], cwd="emu/vba")
 
 
@@ -28,14 +30,19 @@ class VBAM(Emulator):
         downloadGithubRelease("visualboyadvance-m/visualboyadvance-m", "downloads/vba-m.zip", filter=lambda n: "Win" in n and "64bit" in n and n.endswith(".zip"))
         extract("downloads/vba-m.zip", "emu/vba-m")
         setDPIScaling("emu/vba-m/visualboyadvance-m.exe")
-        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/vba-m/cgb_boot.bin")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba-m/dmg_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/vba-m/cgb_boot.bin")
+        download("https://gbdev.gg8.se/files/roms/bootroms/sgb_boot.bin", "emu/vba-m/sgb_boot.bin")
 
-    def startProcess(self, rom, *, gbc=False):
-        if gbc:
-            shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.gbc.ini"), "emu/vba-m/vbam.ini")
-        else:
+    def startProcess(self, rom, *, model, required_features):
+        if model == DMG:
             shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.dmg.ini"), "emu/vba-m/vbam.ini")
+        elif model == CGB:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.gbc.ini"), "emu/vba-m/vbam.ini")
+        elif model == SGB:
+            shutil.copyfile(os.path.join(os.path.dirname(__file__), "vbam.sgb.ini"), "emu/vba-m/vbam.ini")
+        else:
+            return None
         return subprocess.Popen(["emu/vba-m/visualboyadvance-m.exe", os.path.abspath(rom)], cwd="emu/vba-m")
 
     def getScreenshot(self):

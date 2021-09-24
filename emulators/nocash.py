@@ -15,7 +15,7 @@ class NoCash(Emulator):
         setDPIScaling("emu/no$gmb/no$gmb.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "nocash.ini"), "emu/no$gmb/NO$GMB.INI")
     
-    def startProcess(self, rom, *, gbc=False):
+    def startProcess(self, rom, *, model, required_features):
         return subprocess.Popen(["emu/no$gmb/no$gmb.exe", os.path.abspath(rom)], cwd="emu/no$gmb")
 
     def getScreenshot(self):
