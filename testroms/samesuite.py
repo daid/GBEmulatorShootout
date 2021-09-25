@@ -52,7 +52,7 @@ all = [
     Test("samesuite/apu/channel_3/channel_3_stop_delay.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
     Test("samesuite/apu/channel_3/channel_3_stop_div.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
     Test("samesuite/apu/channel_3/channel_3_wave_ram_locked_write.gb", runtime=1.5, model=CGB),
-    Test("samesuite/apu/channel_3/channel_3_wave_ram_sync.gb", runtime=1.5, model=CGB),
+    Test("samesuite/apu/channel_3/channel_3_wave_ram_sync.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
     Test("samesuite/apu/channel_4/channel_4_align.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
     Test("samesuite/apu/channel_4/channel_4_delay.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
     Test("samesuite/apu/channel_4/channel_4_equivalent_frequencies.gb", runtime=1.5, model=CGB, required_features=(PCM,)),
