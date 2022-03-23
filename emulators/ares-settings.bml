@@ -1,0 +1,367 @@
+Video
+  Multiplier: 1
+  Output: Scale
+  AspectCorrection: true
+  AdaptiveSizing: true
+  AutoCentering: false
+  Luminance: 1.0
+  Saturation: 1.0
+  Gamma: 1.0
+  ColorBleed: false
+  ColorEmulation: false
+  InterframeBlending: false
+  Overscan: false
+  PixelAccuracy: false
+  Quality: SD
+  Supersampling: false
+  EnableVulkan: false
+  Driver: GDI
+  Monitor: Primary
+  Format: ARGB24
+  Exclusive: false
+  Blocking: false
+  Flush: false
+  Shader: None
+VirtualPad1
+  Up: ;;
+  Down: ;;
+  Left: ;;
+  Right: ;;
+  Select: ;;
+  Start: ;;
+  A: ;;
+  B: ;;
+  C: ;;
+  X: ;;
+  Y: ;;
+  Z: ;;
+  L1: ;;
+  R1: ;;
+  L2: ;;
+  R2: ;;
+  LT: ;;
+  RT: ;;
+  L-Up: ;;
+  L-Down: ;;
+  L-Left: ;;
+  L-Right: ;;
+  R-Up: ;;
+  R-Down: ;;
+  R-Left: ;;
+  R-Right: ;;
+  Rumble: ;;
+Audio
+  Driver: None
+  Device: Speakers (4- High Definition Audio Device)
+  Frequency: 48000
+  Latency: 0
+  Exclusive: false
+  Blocking: false
+  Dynamic: false
+  Mute: false
+  Volume: 1.0
+  Balance: 0.0
+Input
+  Driver: Windows
+  Defocus: Allow
+Boot
+  Fast: true
+  Debugger: false
+  Prefer: NTSC-U
+General
+  ShowStatusBar: false
+  Rewind: false
+  RunAhead: false
+  AutoSaveMemory: true
+  NativeFileDialogs: true
+  GroupEmulators: true
+Rewind
+  Length: 100
+  Frequency: 10
+Paths
+  Home
+  Saves
+  Screenshots
+  Debugging
+  SuperFamicom
+    GameBoy
+    BSMemory
+    SufamiTurbo
+Recent
+  Game-1
+  Game-2
+  Game-3
+  Game-4
+  Game-5
+  Game-6
+  Game-7
+  Game-8
+  Game-9
+VirtualMouse1
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+VirtualPad2
+  Up: ;;
+  Down: ;;
+  Left: ;;
+  Right: ;;
+  Select: ;;
+  Start: ;;
+  A: ;;
+  B: ;;
+  C: ;;
+  X: ;;
+  Y: ;;
+  Z: ;;
+  L1: ;;
+  R1: ;;
+  L2: ;;
+  R2: ;;
+  LT: ;;
+  RT: ;;
+  L-Up: ;;
+  L-Down: ;;
+  L-Left: ;;
+  L-Right: ;;
+  R-Up: ;;
+  R-Down: ;;
+  R-Left: ;;
+  R-Right: ;;
+  Rumble: ;;
+VirtualMouse2
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+VirtualPad3
+  Up: ;;
+  Down: ;;
+  Left: ;;
+  Right: ;;
+  Select: ;;
+  Start: ;;
+  A: ;;
+  B: ;;
+  C: ;;
+  X: ;;
+  Y: ;;
+  Z: ;;
+  L1: ;;
+  R1: ;;
+  L2: ;;
+  R2: ;;
+  LT: ;;
+  RT: ;;
+  L-Up: ;;
+  L-Down: ;;
+  L-Left: ;;
+  L-Right: ;;
+  R-Up: ;;
+  R-Down: ;;
+  R-Left: ;;
+  R-Right: ;;
+  Rumble: ;;
+VirtualMouse3
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+VirtualPad4
+  Up: ;;
+  Down: ;;
+  Left: ;;
+  Right: ;;
+  Select: ;;
+  Start: ;;
+  A: ;;
+  B: ;;
+  C: ;;
+  X: ;;
+  Y: ;;
+  Z: ;;
+  L1: ;;
+  R1: ;;
+  L2: ;;
+  R2: ;;
+  LT: ;;
+  RT: ;;
+  L-Up: ;;
+  L-Down: ;;
+  L-Left: ;;
+  L-Right: ;;
+  R-Up: ;;
+  R-Down: ;;
+  R-Left: ;;
+  R-Right: ;;
+  Rumble: ;;
+VirtualMouse4
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+VirtualPad5
+  Up: ;;
+  Down: ;;
+  Left: ;;
+  Right: ;;
+  Select: ;;
+  Start: ;;
+  A: ;;
+  B: ;;
+  C: ;;
+  X: ;;
+  Y: ;;
+  Z: ;;
+  L1: ;;
+  R1: ;;
+  L2: ;;
+  R2: ;;
+  LT: ;;
+  RT: ;;
+  L-Up: ;;
+  L-Down: ;;
+  L-Left: ;;
+  L-Right: ;;
+  R-Up: ;;
+  R-Down: ;;
+  R-Left: ;;
+  R-Right: ;;
+  Rumble: ;;
+VirtualMouse5
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+Hotkey
+  ToggleFullscreen: ;;
+  ToggleMouseCapture: ;;
+  FastForward: ;;
+  Rewind: ;;
+  FrameAdvance: ;;
+  CaptureScreenshot: ;;
+  SaveState: ;;
+  LoadState: ;;
+  DecrementStateSlot: ;;
+  IncrementStateSlot: ;;
+  PauseEmulation: ;;
+  QuitEmulator: ;;
+Famicom
+  Visible: true
+  Path
+FamicomDiskSystem
+  Visible: true
+  Path
+  Firmware
+    BIOS.Japan
+SuperFamicom
+  Visible: true
+  Path
+Nintendo64
+  Visible: true
+  Path
+SG-1000
+  Visible: true
+  Path
+MasterSystem
+  Visible: true
+  Path
+  Firmware
+    BIOS.US
+    BIOS.Japan
+    BIOS.Europe
+MegaDrive
+  Visible: true
+  Path
+Mega32X
+  Visible: true
+  Path
+MegaCD
+  Visible: true
+  Path
+  Firmware
+    BIOS.US
+    BIOS.Japan
+    BIOS.Europe
+MegaCD32X
+  Visible: true
+  Path
+PlayStation
+  Visible: true
+  Path
+  Firmware
+    BIOS.US
+    BIOS.Japan
+    BIOS.Europe
+PCEngine
+  Visible: true
+  Path
+PCEngineCD
+  Visible: true
+  Path
+  Firmware
+    BIOS.US
+    BIOS.Japan
+SuperGrafx
+  Visible: true
+  Path
+NeoGeoAES
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+NeoGeoMVS
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+MSX
+  Visible: true
+  Path
+MSX2
+  Visible: true
+  Path
+ColecoVision
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+GameBoy
+  Visible: true
+  Path
+GameBoyColor
+  Visible: true
+  Path
+GameBoyAdvance
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+GameGear
+  Visible: true
+  Path
+WonderSwan
+  Visible: true
+  Path
+WonderSwanColor
+  Visible: true
+  Path
+PocketChallengeV2
+  Visible: true
+  Path
+NeoGeoPocket
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+NeoGeoPocketColor
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
