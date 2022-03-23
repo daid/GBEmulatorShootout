@@ -50,5 +50,9 @@
   "PyBoy": {
     "file": "pyboy.json",
     "url": "https://github.com/Baekalfen/PyBoy"
+  },
+  "ares": {
+    "file": "ares.json",
+    "url": "https://ares-emu.net/"
   }
 }
