@@ -1,5 +1,6 @@
 import json
 import os
+from time import gmtime, strftime
 
 emulators = json.load(open("emulators.json", "rt"))
 tests = json.load(open("tests.json", "rt"))
@@ -30,7 +31,7 @@ f.write("""
     .screenshot { width: 160; height: 144; }
     body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif}
     </style></head><body><table>\n""")
-f.write("<tr><th>-</th>\n")
+f.write("<tr><th style=\"text-align:left\">Updated On<br>" + strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) + "</th>\n")
 for name, emulator in sorted(emulators.items(), key=lambda n: -n[1]['passed']):
     f.write("  <th class='emulator'><a href=\"%s\">%s</a> (%d/%d)</th>\n" % (emulator['url'], name, emulator['passed'], len(emulator['tests'])))
 f.write("</tr>\n");
