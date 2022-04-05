@@ -2,8 +2,10 @@ from test import *
 
 
 all = [
-    Test("daid/ppu_scanline_bgp.gb", runtime=0.5, result=["daid/ppu_scanline_bgp_0.png", "daid/ppu_scanline_bgp_1.png"],
-        description="Mid scanline BGP register changes. Requires accurate PPU timing. Changing the BGP register can causes one pixel to be the OR result of the previous and next BGP colors, resulting in a black line. This seems hardware dependend as not all DMGs do this."),
+    Test("daid/ppu_scanline_bgp.gb (DMG)", runtime=0.5, rom="daid/ppu_scanline_bgp.gb", result=["daid/ppu_scanline_bgp_0.dmg.png", "daid/ppu_scanline_bgp_1.dmg.png", "daid/ppu_scanline_bgp_2.dmg.png"], model=DMG,
+        description="Mid scanline BGP register changes. Requires accurate PPU timing. Changing the BGP register has three possible effects for one pixel: the previous BGP is used, the next BGP is used, or the OR result of the previous and next BGP is used, the last case causing a black line. Which case occurs seems to be hardware and instance dependent as some DMGs do not do a consistent single case."),
+    Test("daid/ppu_scanline_bgp.gb (GBC)", runtime=0.5, rom="daid/ppu_scanline_bgp.gb", result="daid/ppu_scanline_bgp.gbc.png", model=CGB,
+        description="Mid scanline BGP register changes. Requires accurate PPU timing. Changing the BGP register will have the next BGP colors used."),
     Test("daid/stop_instr.gb (DMG)", runtime=0.5, rom="daid/stop_instr.gb", result="daid/stop_instr.dmg.png", model=DMG,
         description="STOP instruction is usually not used, but it should blank out the screen on classic Gameboy. As the PPU is stopped. NOTE: Running this on real hardware might damage the hardware, as the screen should be turned off before STOP on DMG."),
     Test("daid/stop_instr.gb (GBC)", runtime=0.5, rom="daid/stop_instr.gb", result="daid/stop_instr.gbc.png", model=CGB,
