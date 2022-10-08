@@ -10,7 +10,7 @@ from distutils.dir_util import copy_tree
 
 class Ares(Emulator):
     def __init__(self):
-        super().__init__("ares", "https://ares-emu.net/", startup_time=2.2)
+        super().__init__("ares", "https://ares-emu.net/", startup_time=2.2, features=(PCM,))
         self.title_check = lambda title: "ares" in title
 
     def setup(self):
@@ -24,10 +24,6 @@ class Ares(Emulator):
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "ares-settings.bml"), "emu/ares/settings.bml")
 
     def startProcess(self, rom, *, model, required_features):
-        # Temporarily disable non-dmg targets, startup-time-test doesn't work in cgb yet
-        if model != DMG:
-            return None
-
         target = "emu/ares/ares-rom.gb"
         self.cgb = model == CGB
         if self.cgb:
