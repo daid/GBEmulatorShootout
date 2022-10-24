@@ -18,7 +18,7 @@ class VBA(Emulator):
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba/dmg_boot.bin")
 
     def startProcess(self, rom, *, model, required_features):
-        return subprocess.Popen(["emu/vba/VisualBoyAdvance.exe", os.path.abspath(rom)], cwd="emu/vba")
+        return subprocess.Popen(["emu/vba/VisualBoyAdvance-SDL.exe", os.path.abspath(rom)], cwd="emu/vba")
 
 
 class VBAM(Emulator):
