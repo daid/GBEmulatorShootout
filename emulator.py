@@ -35,6 +35,9 @@ class Emulator:
     def isProcessAlive(self, p):
         return p.poll() is None
 
+    def processOutput(self, p):
+        return p.poll()
+
     def endProcess(self, p):
         p.terminate()
 
@@ -81,7 +84,7 @@ class Emulator:
             return None
         while not self.isWindowOpen():
             time.sleep(0.01)
-            assert p.poll() is None, "Process crashed?"
+            assert self.isProcessAlive(p), "Process crashed?"
         time.sleep(self.startup_time)
         start = time.monotonic()
         last_change = time.monotonic()
@@ -94,10 +97,10 @@ class Emulator:
             prev = screenshot
             if time.monotonic() - last_change > 10.0:
                 break
-            assert p.poll() is None, "Process crashed?"
+            assert self.isProcessAlive(p) is None, "Process crashed?"
         if not os.path.exists(test.pass_result_filename):
             screenshot.save(test.pass_result_filename)
-        p.terminate()
+        self.endProcess(p)
         return last_change - start
 
     def measureStartupTime(self, *, model):
@@ -117,7 +120,7 @@ class Emulator:
         print("Window found")
         while True:
             if not self.isProcessAlive(p) or time.monotonic() - post_window_time > 60.0:
-                print("Process gone or timeout: %s" % (p.poll()))
+                print("Process gone or timeout: %s" % (self.processOutput(p)))
                 if self.isProcessAlive(p):
                     self.endProcess(p)
                 return None, fullscreenScreenshot()

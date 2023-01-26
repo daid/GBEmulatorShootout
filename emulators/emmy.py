@@ -25,6 +25,9 @@ class Emmy(Emulator):
     def isProcessAlive(self, p):
         return True
 
+    def processOutput(self, p):
+        return None
+
     def endProcess(self, p):
         pass
 
