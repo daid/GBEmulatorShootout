@@ -3,7 +3,6 @@ import requests
 import os
 import zipfile
 import subprocess
-import win32gui
 import PIL.Image
 import PIL.ImageChops
 import io
@@ -51,10 +50,11 @@ def extract(filename, path):
         subprocess.run([_getz7(), "x", os.path.basename(filename)[:-3]], cwd=path)
     elif filename.endswith(".7z"):
         os.makedirs(path, exist_ok=True)
-        subprocess.run([_getz7(), "x", os.path.abspath(filename)], cwd=path)        
+        subprocess.run([_getz7(), "x", os.path.abspath(filename)], cwd=path)
     return True
 
 def findWindow(title_check):
+    import win32gui
     def f(hwnd, results):
         title = win32gui.GetWindowText(hwnd)
         if title_check(title):
@@ -66,6 +66,7 @@ def findWindow(title_check):
     return None
 
 def getScreenshot(title_check):
+    import win32gui
     hwnd = findWindow(title_check)
     if not hwnd:
         print("Window not found....")

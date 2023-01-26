@@ -4,7 +4,6 @@ import os
 import zipfile
 import subprocess
 import time
-import win32gui
 import PIL.Image
 import PIL.ImageChops
 import sys
@@ -79,13 +78,13 @@ if __name__ == "__main__":
     parser.add_argument('--dump-emulators-json', action='store_true')
     parser.add_argument('--dump-tests-json', action='store_true')
     args = parser.parse_args()
-    
+
     tests = [test for test in tests if checkFilter(test, args.test)]
     emulators = [emulator for emulator in emulators if checkFilter(emulator, args.emulator)]
-    
+
     print("%d emulators" % (len(emulators)))
     print("%d tests" % (len(tests)))
-    
+
     if args.get_runtime:
         for emulator in emulators:
             emulator.setup()
@@ -152,7 +151,7 @@ if __name__ == "__main__":
                     print("Emulator %s failed to run properly" % (emulator))
                     traceback.print_exc()
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
-    
+
     for emulator in emulators:
         data = {
             'emulator': str(emulator),
