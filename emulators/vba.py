@@ -7,7 +7,7 @@ import shutil
 class VBA(Emulator):
     def __init__(self):
         super().__init__("VisualBoyAdvance", "https://sourceforge.net/projects/", startup_time=0.6)
-    
+
     def setup(self):
         download("https://sourceforge.net/projects/vba/files/latest/download", "downloads/vba.zip")
         extract("downloads/vba.zip", "emu/vba")
@@ -25,9 +25,9 @@ class VBAM(Emulator):
     def __init__(self):
         super().__init__("VisualBoyAdvance-M", "https://vba-m.com/", startup_time=1.0)
         self.title_check = lambda title: "VisualBoyAdvance-M" in title
-    
+
     def setup(self):
-        downloadGithubRelease("visualboyadvance-m/visualboyadvance-m", "downloads/vba-m.zip", filter=lambda n: "Win" in n and "64bit" in n and n.endswith(".zip"))
+        downloadGithubRelease("visualboyadvance-m/visualboyadvance-m", "downloads/vba-m.zip", filter=lambda n: "Win" in n and "64" in n and n.endswith(".zip"))
         extract("downloads/vba-m.zip", "emu/vba-m")
         setDPIScaling("emu/vba-m/visualboyadvance-m.exe")
         download("https://gbdev.gg8.se/files/roms/bootroms/dmg_boot.bin", "emu/vba-m/dmg_boot.bin")
