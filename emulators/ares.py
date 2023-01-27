@@ -14,7 +14,7 @@ class Ares(Emulator):
         self.title_check = lambda title: "ares" in title
 
     def setup(self):
-        downloadGithubRelease("ares-emulator/ares", "downloads/ares.zip", filter=lambda n: "ares" in n and "windows" in n and n.endswith(".zip"), allow_prerelease=True)
+        downloadGithubRelease("ares-emulator/ares", "downloads/ares.zip", filter=lambda n: "x64" in n and "windows" in n and n.endswith(".zip"), allow_prerelease=True)
         extract("downloads/ares.zip", "emu/ares")
 
         if not os.path.exists("emu/ares/ares.exe"):
@@ -31,12 +31,12 @@ class Ares(Emulator):
         shutil.copy(rom, target)
         return subprocess.Popen(["emu/ares/ares.exe", os.path.abspath(target)], cwd="emu/ares")
 
-    def getScreenshot(self):       
+    def getScreenshot(self):
         screenshot = getScreenshot(self.title_check)
         if screenshot is None:
             return None
         screenshot = screenshot.reduce(3)
-        if not self.cgb:        
+        if not self.cgb:
             screenshot = screenshot.convert(mode="L", dither=PIL.Image.NONE)
             screenshot = PIL.ImageOps.autocontrast(screenshot)
             screenshot.save("tmp.png")
