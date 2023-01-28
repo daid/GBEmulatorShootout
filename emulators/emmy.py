@@ -34,6 +34,9 @@ class Emmy(Emulator):
     def returncode(self, p):
         return 0
 
+    def undoSetup(self):
+        self.driver.quit()
+
     def startProcess(self, rom, *, model, required_features):
         systemmode = {DMG: "dmg-mode", CGB: "cgb-mode"}.get(model)
         if systemmode is None:

@@ -41,6 +41,9 @@ class Emulator:
     def endProcess(self, p):
         p.terminate()
 
+    def undoSetup(self):
+        pass
+
     def returncode(self, p):
         return p.returncode
 
