@@ -4,7 +4,6 @@ import os
 import zipfile
 import subprocess
 import time
-import win32gui
 import PIL.Image
 import PIL.ImageChops
 import sys
@@ -33,6 +32,7 @@ from emulators.goomba import Goomba
 from emulators.binjgb import Binjgb
 from emulators.pyboy import PyBoy
 from emulators.ares import Ares
+from emulators.emmy import Emmy
 from util import *
 from test import *
 
@@ -53,6 +53,7 @@ emulators = [
     Binjgb(),
     PyBoy(),
     Ares(),
+    Emmy(),
 ]
 tests = testroms.acid.all + testroms.blarg.all + testroms.daid.all + testroms.ax6.all + testroms.mooneye.all + testroms.samesuite.all + testroms.hacktix.all + testroms.cpp.all
 
@@ -79,13 +80,13 @@ if __name__ == "__main__":
     parser.add_argument('--dump-emulators-json', action='store_true')
     parser.add_argument('--dump-tests-json', action='store_true')
     args = parser.parse_args()
-    
+
     tests = [test for test in tests if checkFilter(test, args.test)]
     emulators = [emulator for emulator in emulators if checkFilter(emulator, args.emulator)]
-    
+
     print("%d emulators" % (len(emulators)))
     print("%d tests" % (len(tests)))
-    
+
     if args.get_runtime:
         for emulator in emulators:
             emulator.setup()
@@ -93,6 +94,7 @@ if __name__ == "__main__":
                 if not checkFilter(test, args.test):
                     continue
                 print("%s: %s: %g seconds" % (emulator, test, emulator.getRunTimeFor(test)))
+            emulator.undoSetup()
         sys.exit()
     if args.dump_emulators_json:
         json.dump({
@@ -129,6 +131,7 @@ if __name__ == "__main__":
             if sgb_start_time is not None:
                 print("Startup time: %s = %g (sgb)" % (emulator, sgb_start_time))
                 f.write("%s (sgb)<br>\n<img src='data:image/png;base64,%s'>\n" % (emulator, imageToBase64(sgb_screenshot)))
+            emulator.undoSetup()
         f.write("</body></html>")
         sys.exit()
 
@@ -151,8 +154,9 @@ if __name__ == "__main__":
                     import traceback
                     print("Emulator %s failed to run properly" % (emulator))
                     traceback.print_exc()
+        emulator.undoSetup()
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
-    
+
     for emulator in emulators:
         data = {
             'emulator': str(emulator),

@@ -2,7 +2,6 @@ from util import *
 from emulator import Emulator
 from test import *
 import shutil
-import winreg
 
 
 class GambatteSpeedrun(Emulator):
@@ -12,6 +11,7 @@ class GambatteSpeedrun(Emulator):
         self.title_check = lambda title: "Gambatte-Speedrun" in title
 
     def setup(self):
+        import winreg
         downloadGithubRelease("pokemon-speedrunning/gambatte-speedrun", "downloads/gambatte-speedrun.zip", filter=lambda n: "theothers" in n and n.endswith(".zip"))
         extract("downloads/gambatte-speedrun.zip", "emu/gambatte-speedrun")
         download("https://gbdev.gg8.se/files/roms/bootroms/cgb_boot.bin", "emu/gambatte-speedrun/cgb_boot.bin")
@@ -29,6 +29,7 @@ class GambatteSpeedrun(Emulator):
         winreg.SetValueEx(key, "engineIndex", 0, 1, "Null")
 
     def startProcess(self, rom, *, model, required_features):
+        import winreg
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Software\gambatte\gambatte_qt")
         platform = {DMG: 0, CGB: 1, SGB: 4}.get(model)
         winreg.SetValueEx(key, "platform", 0, winreg.REG_DWORD, platform)

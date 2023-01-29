@@ -16,7 +16,7 @@ class Emulator:
         self.title_check = lambda title: title.startswith(self.name)
         self.speed = 1.0
         self.features = features or set()
-    
+
     def setup(self):
         raise NotImplementedError()
 
@@ -29,21 +29,39 @@ class Emulator:
     def getScreenshot(self):
         return getScreenshot(self.title_check)
 
+    def isWindowOpen(self):
+        return findWindow(self.title_check) is not None
+
+    def isProcessAlive(self, p):
+        return p.poll() is None
+
+    def processOutput(self, p):
+        return p.poll()
+
+    def endProcess(self, p):
+        p.terminate()
+
+    def undoSetup(self):
+        pass
+
+    def returncode(self, p):
+        return p.returncode
+
     def run(self, test):
         print("Running %s on %s" % (test, self))
-        
+
         sav_file = os.path.splitext(test.rom)[0] + ".sav"
         if os.path.exists(sav_file):
             os.unlink(sav_file)
-        
+
         p = self.startProcess(test.rom, model=test.model, required_features=test.required_features)
         if p is None:
             print("%s cannot run %s (incompattible model or feature requests)" % (self, test))
             return None
         process_create_time = time.monotonic()
-        while findWindow(self.title_check) is None:
+        while not self.isWindowOpen():
             time.sleep(0.01)
-            assert p.poll() is None, "Process crashed?"
+            assert self.isProcessAlive(p), "Process crashed?"
             assert time.monotonic() - process_create_time < 30.0, "Creating the window took longer then 30 seconds?"
         process_create_time = time.monotonic() - process_create_time
         self.postWindowCreation()
@@ -57,8 +75,8 @@ class Emulator:
                 if result is not None:
                     print("Early exit: %s: %g" % (result, time.monotonic() - start_time))
                     break
-            assert p.poll() is None, "Process crashed? (exit: %d)" % (p.returncode)
-        p.terminate()
+            assert self.isProcessAlive(p), "Process crashed? (exit: %d)" % (self.returncode(p))
+        self.endProcess(p)
         if result is None:
             result = test.getDefaultResult()
         return TestResult(result=result, screenshot=screenshot, startuptime=process_create_time, runtime=time.monotonic()-start_time)
@@ -67,9 +85,9 @@ class Emulator:
         p = self.startProcess(test.rom, model=test.model, required_features=test.required_features)
         if p is None:
             return None
-        while findWindow(self.title_check) is None:
+        while not self.isWindowOpen():
             time.sleep(0.01)
-            assert p.poll() is None, "Process crashed?"
+            assert self.isProcessAlive(p), "Process crashed?"
         time.sleep(self.startup_time)
         start = time.monotonic()
         last_change = time.monotonic()
@@ -82,10 +100,10 @@ class Emulator:
             prev = screenshot
             if time.monotonic() - last_change > 10.0:
                 break
-            assert p.poll() is None, "Process crashed?"
+            assert self.isProcessAlive(p) is None, "Process crashed?"
         if not os.path.exists(test.pass_result_filename):
             screenshot.save(test.pass_result_filename)
-        p.terminate()
+        self.endProcess(p)
         return last_change - start
 
     def measureStartupTime(self, *, model):
@@ -94,20 +112,20 @@ class Emulator:
             return None, None
         reference = PIL.Image.open("startup_time_test.png")
         start_pre_window_time = time.monotonic()
-        while findWindow(self.title_check) is None:
+        while not self.isWindowOpen():
             time.sleep(0.01)
-            if p.poll() is not None or time.monotonic() - start_pre_window_time > 60.0:
+            if not self.isProcessAlive(p) or time.monotonic() - start_pre_window_time > 60.0:
                 print("Process gone or timeout")
-                if p.poll() is None:
-                    p.terminate()
+                if self.isProcessAlive(p):
+                    self.endProcess(p)
                 return None, fullscreenScreenshot()
         post_window_time = time.monotonic()
         print("Window found")
         while True:
-            if p.poll() is not None or time.monotonic() - post_window_time > 60.0:
-                print("Process gone or timeout: %s" % (p.poll()))
-                if p.poll() is None:
-                    p.terminate()
+            if not self.isProcessAlive(p) or time.monotonic() - post_window_time > 60.0:
+                print("Process gone or timeout: %s" % (self.processOutput(p)))
+                if self.isProcessAlive(p):
+                    self.endProcess(p)
                 return None, fullscreenScreenshot()
             screenshot = self.getScreenshot()
             if screenshot is None:
@@ -122,7 +140,7 @@ class Emulator:
             break
         startup_time = time.monotonic() - post_window_time
         screenshot = fullscreenScreenshot()
-        p.terminate()
+        self.endProcess(p)
         return startup_time, screenshot
 
     def getJsonFilename(self):
