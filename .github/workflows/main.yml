@@ -52,16 +52,19 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Check emulator startups
         run: |
-          python main.py --get-startuptime --emulator !mGBA --emulator !KiGB --emulator !Goomba --emulator '!No$gmb' --emulator !binjgb
+          python main.py --get-startuptime
+
       - name: Archive startup time result
         uses: actions/upload-artifact@v2
         with:
           name: startuptime
           path: startuptime.html
+
       - name: Run tests
         run: |
-          python main.py --emulator !mGBA --emulator !KiGB --emulator !Goomba --emulator '!No$gmb' --emulator !binjgb
+          python main.py
           python main.py --dump-tests-json --dump-emulators-json
+
       - name: Deploy pages
         run: |
           git config --global user.name "github actions"
