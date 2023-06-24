@@ -183,7 +183,15 @@ if __name__ == "__main__":
         data = {
             'emulator': str(emulator),
             'date': time.time(),
-            'tests': {str(test): {'result': result.result, 'startuptime': result.startuptime, 'runtime': result.runtime, 'screenshot': imageToBase64(result.screenshot)} for test, result in results[emulator].items()},
+            'tests': {
+                str(test): {
+                    'result': result.result,
+                    'startuptime': result.startuptime,
+                    'runtime': result.runtime,
+                    'screenshot': imageToBase64(result.screenshot) if result.screenshot != None else '',
+                }
+                for test, result in results[emulator].items()
+            },
         }
         if results[emulator]:
             json.dump(data, open(emulator.getJsonFilename(), "wt"), indent="  ")
