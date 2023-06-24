@@ -9,6 +9,7 @@ import PIL.ImageChops
 import sys
 import argparse
 import json
+import traceback
 
 import testroms.blarg
 import testroms.mooneye
@@ -166,7 +167,13 @@ if __name__ == "__main__":
     results = {}
     for emulator in emulators:
         results[emulator] = {}
-        emulator.setup()
+        try:
+            emulator.setup()
+        except Exception:
+            print(f'Exception while setting up {emulator}')
+            traceback.print_exc()
+            continue
+
         for test in tests:
             skip = False
             for feature in test.required_features:
@@ -181,7 +188,6 @@ if __name__ == "__main__":
                 except KeyboardInterrupt:
                     exit(0)
                 except:
-                    import traceback
                     print("Emulator %s failed to run properly" % (emulator))
                     traceback.print_exc()
         emulator.undoSetup()
