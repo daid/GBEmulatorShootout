@@ -62,14 +62,25 @@ def checkFilter(input, filter_data):
     if filter_data is None:
         return True
     input = str(input)
+
+    # if there is at least one !QUERY, a value not matching any of the negative
+    # querys will be accepted.
+    out_filter = False
     for f in filter_data:
         if f.startswith("!"):
+            out_filter = True
             if f[1:] in input:
                 return False
-        else:
-            if f not in input:
-                return False
-    return True
+    if out_filter:
+        return True
+
+    # if there are no !QUERY, a value matching any of the querys will be
+    # accpeted.
+    for f in filter_data:
+        if not f.startswith("!"):
+            if f in input:
+                return True
+    return False
 
 
 if __name__ == "__main__":
