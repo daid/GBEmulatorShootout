@@ -21,7 +21,7 @@
   },
   "VisualBoyAdvance": {
     "file": "visualboyadvance.json",
-    "url": "https://sourceforge.net/projects/"
+    "url": "https://sourceforge.net/projects/vba"
   },
   "VisualBoyAdvance-M": {
     "file": "visualboyadvance-m.json",
@@ -54,5 +54,13 @@
   "ares": {
     "file": "ares.json",
     "url": "https://ares-emu.net/"
+  },
+  "Emmy": {
+    "file": "emmy.json",
+    "url": "https://emmy-gbc.vercel.app/"
+  },
+  "gameroy": {
+    "file": "gameroy.json",
+    "url": "https://github.com/Rodrigodd/gameroy"
   }
 }
