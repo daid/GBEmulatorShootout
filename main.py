@@ -196,6 +196,14 @@ if __name__ == "__main__":
     emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
 
     for emulator in emulators:
+        def toBase64(data):
+            if data is None:
+                return ''
+            try:
+                return imageToBase64(data)
+            except:
+                return ''
+
         data = {
             'emulator': str(emulator),
             'date': time.time(),
@@ -204,7 +212,7 @@ if __name__ == "__main__":
                     'result': result.result,
                     'startuptime': result.startuptime,
                     'runtime': result.runtime,
-                    'screenshot': imageToBase64(result.screenshot) if result.screenshot != None else '',
+                    'screenshot': toBase64(result.screenshot)
                 }
                 for test, result in results[emulator].items()
             },
