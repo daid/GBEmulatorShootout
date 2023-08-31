@@ -202,6 +202,8 @@ if __name__ == "__main__":
             try:
                 return imageToBase64(data)
             except:
+                print(f'Exception while converting image to base64')
+                traceback.print_exc()
                 return ''
 
         data = {
