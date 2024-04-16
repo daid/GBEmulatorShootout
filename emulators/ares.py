@@ -6,7 +6,7 @@ import shutil
 import os
 import PIL.Image
 import PIL.ImageOps
-from distutils.dir_util import copy_tree
+from shutil import copytree
 
 class Ares(Emulator):
     def __init__(self):
@@ -18,7 +18,7 @@ class Ares(Emulator):
         extract("downloads/ares.zip", "emu/ares")
 
         if not os.path.exists("emu/ares/ares.exe"):
-          copy_tree(os.path.join("emu/ares", os.listdir("emu/ares")[0]), "emu/ares")
+          copytree(os.path.join("emu/ares", os.listdir("emu/ares")[0]), "emu/ares")
 
         setDPIScaling("emu/ares/ares.exe")
         shutil.copyfile(os.path.join(os.path.dirname(__file__), "ares-settings.bml"), "emu/ares/settings.bml")
