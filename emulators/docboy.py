@@ -20,4 +20,5 @@ class DocBoy(Emulator):
     def startProcess(self, rom, *, model, required_features):
         if model != DMG:
             return None
-        return subprocess.Popen(["emu/docboy/docboy-sdl.exe", os.path.abspath(rom), "-c", "docboy.ini"], cwd="emu/docboy")
+        return subprocess.Popen(["emu/docboy/docboy-sdl.exe", os.path.abspath(rom), "-c", "docboy.ini", "-z", "1"],
+                                cwd="emu/docboy")
