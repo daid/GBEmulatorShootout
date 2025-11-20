@@ -10,7 +10,7 @@ import zipfile
 class Masquerade(Emulator):
     def __init__(self):
         super().__init__("Masquerade", "https://github.com/Kotambail-Hegde/Masquerade-Emulator",
-                         startup_time=1.0, features=(PCM,))
+                         startup_time=5.0, features=(PCM,))
 
     def setup(self):
         downloadGithubRelease("Kotambail-Hegde/Masquerade-Emulator", "downloads/masquerade.zip")
@@ -96,9 +96,9 @@ class Masquerade(Emulator):
 
     def startProcess(self, rom, *, model, required_features):
         if model == DMG:
-            self.startup_time = 1.0
+            self.startup_time = 5.0
         elif model == CGB:
-            self.startup_time = 1.0
+            self.startup_time = 5.0
         else:
             return None
         return subprocess.Popen(["emu/masquerade/masquerade.exe", os.path.abspath(rom)], cwd="emu/masquerade")
