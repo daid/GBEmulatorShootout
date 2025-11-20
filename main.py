@@ -62,6 +62,7 @@ emulators = [
 ]
 tests = testroms.acid.all + testroms.blarg.all + testroms.daid.all + testroms.ax6.all + testroms.mooneye.all + testroms.samesuite.all + testroms.hacktix.all + testroms.cpp.all + testroms.mealybug.all
 
+
 def checkFilter(input, filter_data):
     if filter_data is None:
         return True
@@ -152,15 +153,15 @@ if __name__ == "__main__":
                 if dmg_screenshot is not None:
                     print("Startup time: %s = %g (dmg)" % (emulator, dmg_start_time or 0.0))
                     f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
-                    emulator, imageToBase64(dmg_screenshot)))
+                        emulator, imageToBase64(dmg_screenshot)))
                 if gbc_screenshot is not None:
                     print("Startup time: %s = %g (gbc)" % (emulator, gbc_start_time or 0.0))
                     f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
-                    emulator, imageToBase64(gbc_screenshot)))
+                        emulator, imageToBase64(gbc_screenshot)))
                 if sgb_screenshot is not None:
                     print("Startup time: %s = %g (sgb)" % (emulator, sgb_start_time or 0.0))
                     f.write("%s (sgb)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
-                    emulator, imageToBase64(sgb_screenshot)))
+                        emulator, imageToBase64(sgb_screenshot)))
                 emulator.undoSetup()
             except Exception as e:
                 print(f'Exception while running {emulator}')
