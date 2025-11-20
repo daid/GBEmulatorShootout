@@ -40,7 +40,6 @@ from emulators.masquerade import Masquerade
 from util import *
 from test import *
 
-
 emulators = [
     # BDM(),
     # MGBA(), # Black screen on github actions
@@ -69,7 +68,7 @@ def checkFilter(input, filter_data):
     input = str(input)
 
     # if there is at least one !QUERY, a value not matching any of the negative
-    # querys will be accepted.
+    # query's will be accepted.
     out_filter = False
     for f in filter_data:
         if f.startswith("!"):
@@ -79,8 +78,8 @@ def checkFilter(input, filter_data):
     if out_filter:
         return True
 
-    # if there are no !QUERY, a value matching any of the querys will be
-    # accpeted.
+    # if there are no !QUERY, a value matching any of the query's will be
+    # accepted.
     for f in filter_data:
         if not f.startswith("!"):
             if f in input:
@@ -152,13 +151,16 @@ if __name__ == "__main__":
                 sgb_start_time, sgb_screenshot = emulator.measureStartupTime(model=SGB)
                 if dmg_screenshot is not None:
                     print("Startup time: %s = %g (dmg)" % (emulator, dmg_start_time or 0.0))
-                    f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (emulator, imageToBase64(dmg_screenshot)))
+                    f.write("%s (dmg)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
+                    emulator, imageToBase64(dmg_screenshot)))
                 if gbc_screenshot is not None:
                     print("Startup time: %s = %g (gbc)" % (emulator, gbc_start_time or 0.0))
-                    f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (emulator, imageToBase64(gbc_screenshot)))
+                    f.write("%s (gbc)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
+                    emulator, imageToBase64(gbc_screenshot)))
                 if sgb_screenshot is not None:
                     print("Startup time: %s = %g (sgb)" % (emulator, sgb_start_time or 0.0))
-                    f.write("%s (sgb)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (emulator, imageToBase64(sgb_screenshot)))
+                    f.write("%s (sgb)<br>\n<img src='data:image/png;base64,%s'><br>\n" % (
+                    emulator, imageToBase64(sgb_screenshot)))
                 emulator.undoSetup()
             except Exception as e:
                 print(f'Exception while running {emulator}')
@@ -195,7 +197,9 @@ if __name__ == "__main__":
                     print("Emulator %s failed to run properly" % (emulator))
                     traceback.print_exc()
         emulator.undoSetup()
-    emulators.sort(key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]), reverse=True)
+    emulators.sort(
+        key=lambda emulator: len([result[0] for result in results[emulator].values() if result.result != "FAIL"]),
+        reverse=True)
 
     for emulator in emulators:
         def toBase64(data):
@@ -207,6 +211,7 @@ if __name__ == "__main__":
                 print(f'Exception while converting image to base64')
                 traceback.print_exc()
                 return ''
+
 
         data = {
             'emulator': str(emulator),

@@ -97,8 +97,41 @@ class Masquerade(Emulator):
     def startProcess(self, rom, *, model, required_features):
         if model == DMG:
             self.startup_time = 5.0
+
+            config_path = "emu/masquerade/assets/CONFIG.ini"
+            if os.path.exists(config_path):
+                with open(config_path, 'r') as f:
+                    content = f.read()
+
+                # Modify [gb-gbc] section
+                content = re.sub(
+                    r'(\[gb-gbc\].*?)_force_gbc_for_gb=[^\n]+',
+                    r'\1_force_gbc_for_gb=false',
+                    content,
+                    flags=re.DOTALL
+                )
+
+                with open(config_path, 'w') as f:
+                    f.write(content)
         elif model == CGB:
             self.startup_time = 5.0
+
+            config_path = "emu/masquerade/assets/CONFIG.ini"
+            if os.path.exists(config_path):
+                with open(config_path, 'r') as f:
+                    content = f.read()
+
+                # Modify [gb-gbc] section
+                content = re.sub(
+                    r'(\[gb-gbc\].*?)_force_gbc_for_gb=[^\n]+',
+                    r'\1_force_gbc_for_gb=true',
+                    content,
+                    flags=re.DOTALL
+                )
+
+                with open(config_path, 'w') as f:
+                    f.write(content)
+
         else:
             return None
         return subprocess.Popen(["emu/masquerade/masquerade.exe", os.path.abspath(rom)], cwd="emu/masquerade")
