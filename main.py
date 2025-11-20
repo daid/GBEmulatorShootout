@@ -20,44 +20,44 @@ import testroms.daid
 import testroms.hacktix
 import testroms.cpp
 import testroms.mealybug
-# from emulators.kigb import KiGB
-# from emulators.bgb import BGB
-# from emulators.vba import VBA, VBAM
-# from emulators.mgba import MGBA
-# from emulators.sameboy import SameBoy
-# from emulators.nocash import NoCash
-# from emulators.gambatte import GambatteSpeedrun
-# from emulators.emulicious import Emulicious
-# from emulators.bdm import BDM
-# from emulators.higan import Higan
-# from emulators.goomba import Goomba
-# from emulators.binjgb import Binjgb
-# from emulators.pyboy import PyBoy
-# from emulators.ares import Ares
-# from emulators.emmy import Emmy
-# from emulators.gameroy import GameRoy
+from emulators.kigb import KiGB
+from emulators.bgb import BGB
+from emulators.vba import VBA, VBAM
+from emulators.mgba import MGBA
+from emulators.sameboy import SameBoy
+from emulators.nocash import NoCash
+from emulators.gambatte import GambatteSpeedrun
+from emulators.emulicious import Emulicious
+from emulators.bdm import BDM
+from emulators.higan import Higan
+from emulators.goomba import Goomba
+from emulators.binjgb import Binjgb
+from emulators.pyboy import PyBoy
+from emulators.ares import Ares
+from emulators.emmy import Emmy
+from emulators.gameroy import GameRoy
 from emulators.masquerade import Masquerade
 from util import *
 from test import *
 
 emulators = [
-    # BDM(),
-    # MGBA(), # Black screen on github actions
-    # KiGB(), # Crashes on github actions
-    # SameBoy(),
-    # BGB(),
-    # VBA(),
-    # VBAM(),
-    # NoCash(),
-    # GambatteSpeedrun(),
-    # Emulicious(),
-    # # Higan(), # Crashes all over the place.
-    # Goomba(),
-    # Binjgb(),
-    # PyBoy(),
-    # Ares(),
-    # Emmy(),
-    # GameRoy(),
+    BDM(),
+    MGBA(), # Black screen on github actions
+    KiGB(), # Crashes on github actions
+    SameBoy(),
+    BGB(),
+    VBA(),
+    VBAM(),
+    NoCash(),
+    GambatteSpeedrun(),
+    Emulicious(),
+    # Higan(), # Crashes all over the place.
+    Goomba(),
+    Binjgb(),
+    PyBoy(),
+    Ares(),
+    Emmy(),
+    GameRoy(),
     Masquerade(),
 ]
 tests = testroms.acid.all + testroms.blarg.all + testroms.daid.all + testroms.ax6.all + testroms.mooneye.all + testroms.samesuite.all + testroms.hacktix.all + testroms.cpp.all + testroms.mealybug.all
