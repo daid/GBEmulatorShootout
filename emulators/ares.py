@@ -6,7 +6,6 @@ import shutil
 import os
 import PIL.Image
 import PIL.ImageOps
-from distutils.dir_util import copy_tree
 
 class Ares(Emulator):
     def __init__(self):
@@ -27,7 +26,7 @@ class Ares(Emulator):
                 if not os.path.isdir(directory):
                     continue
                 if os.path.exists(os.path.join(directory, "ares.exe")):
-                    copy_tree(directory, "emu/ares")
+                    shutil.copytree(directory, "emu/ares", dirs_exist_ok=True)
                     break
             if not os.path.exists("emu/ares/ares.exe"):
                 raise FileNotFoundError("Could not locate ares executable after setup")
