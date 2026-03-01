@@ -1,0 +1,11 @@
+name: CI - Beaten Dying Moon
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: Beaten Dying Moon
+      needs_audio: true

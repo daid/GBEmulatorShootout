@@ -1,0 +1,11 @@
+name: CI - mGBA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: mGBA
+      needs_audio: true

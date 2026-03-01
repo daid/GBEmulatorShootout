@@ -1,0 +1,11 @@
+name: CI - PyBoy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: PyBoy
+      needs_audio: true

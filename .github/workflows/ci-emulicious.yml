@@ -1,0 +1,11 @@
+name: CI - Emulicious
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: Emulicious
+      needs_audio: true

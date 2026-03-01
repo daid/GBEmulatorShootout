@@ -1,0 +1,11 @@
+name: CI - VisualBoyAdvance
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: VisualBoyAdvance
+      needs_audio: true
