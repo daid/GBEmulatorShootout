@@ -1,0 +1,11 @@
+name: CI - ares
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: ares
+      needs_audio: true

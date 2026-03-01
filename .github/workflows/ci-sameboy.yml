@@ -1,0 +1,11 @@
+name: CI - SameBoy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    uses: ./.github/workflows/emulator-runner.yml
+    with:
+      emulator: SameBoy
+      needs_audio: true
