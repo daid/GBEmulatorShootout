@@ -45,16 +45,46 @@ jobs:
         if: ${{ inputs.needs_audio }}
         shell: powershell
         run: |
-          Start-Service audio*
-          Invoke-WebRequest https://github.com/duncanthrax/scream/releases/download/3.6/Scream3.6.zip -OutFile C:\Scream3.6.zip
-          Extract-7Zip -Path C:\Scream3.6.zip -DestinationPath C:\Scream
-          $cert = (Get-AuthenticodeSignature C:\Scream\Install\driver\Scream.sys).SignerCertificate
+          $ErrorActionPreference = "Stop"
+
+          Start-Service -Name Audiosrv
+
+          $zipPath = "C:\Scream3.6.zip"
+          $extractPath = "C:\Scream"
+          Invoke-WebRequest https://github.com/duncanthrax/scream/releases/download/3.6/Scream3.6.zip -OutFile $zipPath
+          if (Test-Path $extractPath) {
+            Remove-Item -Path $extractPath -Recurse -Force
+          }
+          Expand-Archive -Path $zipPath -DestinationPath $extractPath -Force
+
+          $driverDir = Get-ChildItem -Path $extractPath -Recurse -Directory |
+            Where-Object { (Test-Path (Join-Path $_.FullName "Scream.sys")) -and (Test-Path (Join-Path $_.FullName "Scream.inf")) } |
+            Select-Object -First 1
+          $helpersDir = Get-ChildItem -Path $extractPath -Recurse -Directory |
+            Where-Object { Test-Path (Join-Path $_.FullName "devcon.exe") } |
+            Select-Object -First 1
+
+          if (-not $driverDir) {
+            throw "Scream driver directory was not found after extraction."
+          }
+          if (-not $helpersDir) {
+            throw "Scream helper directory containing devcon.exe was not found after extraction."
+          }
+
+          $screamSys = Join-Path $driverDir.FullName "Scream.sys"
+          $screamInf = Join-Path $driverDir.FullName "Scream.inf"
+          $devcon = Join-Path $helpersDir.FullName "devcon.exe"
+
+          $cert = (Get-AuthenticodeSignature $screamSys).SignerCertificate
+          if (-not $cert) {
+            throw "Failed to read Scream driver certificate."
+          }
           $store = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher", "LocalMachine")
           $store.Open("ReadWrite")
           $store.Add($cert)
           $store.Close()
-          cd C:\Scream\Install\driver
-          C:\Scream\Install\helpers\devcon install Scream.inf *Scream
+
+          & $devcon install $screamInf '*Scream'
 
       - name: Run emulator tests
         run: python main.py --emulator "${{ inputs.emulator }}"
