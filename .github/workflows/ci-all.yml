@@ -8,7 +8,6 @@ permissions:
 
 jobs:
   run-all:
-    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -85,5 +84,6 @@ jobs:
       extra_requirements: ${{ matrix.extra_requirements }}
 
   deploy-pages:
+    if: ${{ always() }}
     needs: run-all
     uses: ./.github/workflows/deploy-pages.yml
